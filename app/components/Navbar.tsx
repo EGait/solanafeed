@@ -5,11 +5,21 @@ export default function Navbar() {
         SolanaFeed
       </div>
       <div className="hidden md:flex gap-6">
-        {["News", "Projects", "Swap", "About"].map((link) => (
-          <a key={link} href="#" className="text-sm text-gray-500 hover:text-purple-400 transition-colors">
-            {link}
-          </a>
-        ))}
+        <a href="/" className="text-sm text-gray-500 hover:text-purple-400 transition-colors">
+          Home
+        </a>
+        <a href="/projects" className="text-sm text-gray-500 hover:text-purple-400 transition-colors">
+          Projects
+        </a>
+        <a href="/news" className="text-sm text-gray-500 hover:text-purple-400 transition-colors">
+          News
+        </a>
+        <a href="/swap" className="text-sm text-gray-500 hover:text-purple-400 transition-colors">
+          Swap
+        </a>
+        <a href="/about" className="text-sm text-gray-500 hover:text-purple-400 transition-colors">
+          About
+        </a>
       </div>
       <button className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm px-4 py-2 rounded-lg">
         Launch App
