@@ -18,7 +18,7 @@ export default function Navbar() {
           Swap
         </a>
         <a href="/about" className="text-sm text-gray-500 hover:text-purple-400 transition-colors">
-          About
+        About
         </a>
       </div>
       <button className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm px-4 py-2 rounded-lg">
