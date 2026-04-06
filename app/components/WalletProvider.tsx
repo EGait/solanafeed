@@ -1,5 +1,6 @@
 'use client'
 
+import '@solana/wallet-adapter-react-ui/styles.css'
 import { useMemo } from 'react'
 import { ConnectionProvider, WalletProvider } from '@solana/wallet-adapter-react'
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base'
@@ -10,7 +11,6 @@ import {
   CoinbaseWalletAdapter,
 } from '@solana/wallet-adapter-wallets'
 import { clusterApiUrl } from '@solana/web3.js'
-
 
 type Props = {
   children: React.ReactNode

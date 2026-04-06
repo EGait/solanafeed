@@ -11,9 +11,14 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Missing inputMint or outputMint' }, { status: 400 })
     }
 
-    const res = await fetch(
-      `https://quote-api.jup.ag/v6/quote?inputMint=${inputMint}&outputMint=${outputMint}&amount=${amount}&slippageBps=50`
-    )
+    const url = `https://quote-api.jup.ag/v6/quote?inputMint=${inputMint}&outputMint=${outputMint}&amount=${amount}&slippageBps=50`
+
+    const res = await fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+      },
+      next: { revalidate: 0 }
+    })
 
     if (!res.ok) {
       const text = await res.text()

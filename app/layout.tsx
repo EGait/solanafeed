@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import AppWalletProvider from './components/WalletProvider'
+import WalletProviderWrapper from './components/WalletProviderWrapper'
 
 export const metadata: Metadata = {
   title: 'SolanaFeed — The hub for everything Solana',
@@ -15,9 +15,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <AppWalletProvider>
+        <WalletProviderWrapper>
           {children}
-        </AppWalletProvider>
+        </WalletProviderWrapper>
       </body>
     </html>
   )

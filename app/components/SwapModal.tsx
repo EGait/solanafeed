@@ -31,24 +31,48 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
   const [amount, setAmount] = useState('1')
   const [quote, setQuote] = useState<any>(null)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   if (!isOpen) return null
 
   const getQuote = async () => {
+    if (!amount || parseFloat(amount) <= 0) return
+    if (fromToken.symbol === toToken.symbol) return
+
     setLoading(true)
     setQuote(null)
-    await new Promise(r => setTimeout(r, 600))
-    const outputAmount = (parseFloat(amount) * (Math.random() * 50 + 100)).toFixed(4)
-    const priceImpact = (Math.random() * 0.02).toFixed(4)
-    const rate = (parseFloat(outputAmount) / parseFloat(amount)).toFixed(4)
-    setQuote({ outputAmount, priceImpact, rate })
-    setLoading(false)
+    setError('')
+
+    try {
+      const lamports = Math.floor(parseFloat(amount) * 1e9)
+      const res = await fetch(
+        `/api/jupiterQuote?inputMint=${fromToken.mint}&outputMint=${toToken.mint}&amount=${lamports}`
+      )
+      const data = await res.json()
+
+      if (data.error) {
+        setError('Could not fetch quote for this pair. Try a different token.')
+        return
+      }
+
+      const outputAmount = (parseInt(data.outAmount) / 1e6).toFixed(4)
+      const priceImpact = data.priceImpactPct || '0'
+      const rate = (parseFloat(outputAmount) / parseFloat(amount)).toFixed(4)
+
+      setQuote({ outputAmount, priceImpact, rate })
+    } catch (err) {
+      setError('Failed to fetch quote. Please try again.')
+      console.error('Failed to fetch quote:', err)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const switchTokens = () => {
     setFromToken(toToken)
     setToToken(fromToken)
     setQuote(null)
+    setError('')
   }
 
   return (
@@ -81,6 +105,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
                 const t = tokens.find(t => t.symbol === e.target.value)!
                 setFromToken(t)
                 setQuote(null)
+                setError('')
               }}
               className="bg-transparent text-gray-200 text-sm font-medium outline-none cursor-pointer"
             >
@@ -91,7 +116,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
             <input
               type="number"
               value={amount}
-              onChange={e => { setAmount(e.target.value); setQuote(null) }}
+              onChange={e => { setAmount(e.target.value); setQuote(null); setError('') }}
               className="bg-transparent text-right text-gray-200 text-lg font-medium w-full outline-none"
               min="0"
               placeholder="0.00"
@@ -115,6 +140,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
                 const t = tokens.find(t => t.symbol === e.target.value)!
                 setToToken(t)
                 setQuote(null)
+                setError('')
               }}
               className="bg-transparent text-gray-200 text-sm font-medium outline-none cursor-pointer"
             >
@@ -127,6 +153,12 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
             </div>
           </div>
         </div>
+
+        {error && (
+          <div className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 mb-4">
+            {error}
+          </div>
+        )}
 
         {quote && (
           <div className="bg-white/[0.02] border border-purple-900/20 rounded-xl p-4 mb-4">

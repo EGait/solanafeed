@@ -24,22 +24,46 @@ export default function SwapPage() {
   const [amount, setAmount] = useState('1')
   const [quote, setQuote] = useState<any>(null)
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const getQuote = async () => {
+    if (!amount || parseFloat(amount) <= 0) return
+    if (fromToken.symbol === toToken.symbol) return
+
     setLoading(true)
     setQuote(null)
-    await new Promise(r => setTimeout(r, 600))
-    const outputAmount = (parseFloat(amount) * (Math.random() * 50 + 100)).toFixed(4)
-    const priceImpact = (Math.random() * 0.02).toFixed(4)
-    const rate = (parseFloat(outputAmount) / parseFloat(amount)).toFixed(4)
-    setQuote({ outputAmount, priceImpact, rate })
-    setLoading(false)
+    setError('')
+
+    try {
+      const lamports = Math.floor(parseFloat(amount) * 1e9)
+      const res = await fetch(
+        `/api/jupiterQuote?inputMint=${fromToken.mint}&outputMint=${toToken.mint}&amount=${lamports}`
+      )
+      const data = await res.json()
+
+      if (data.error) {
+        setError('Could not fetch quote for this pair. Try a different token.')
+        return
+      }
+
+      const outputAmount = (parseInt(data.outAmount) / 1e6).toFixed(4)
+      const priceImpact = data.priceImpactPct || '0'
+      const rate = (parseFloat(outputAmount) / parseFloat(amount)).toFixed(4)
+
+      setQuote({ outputAmount, priceImpact, rate, raw: data })
+    } catch (err) {
+      setError('Failed to fetch quote. Please try again.')
+      console.error('Failed to fetch quote:', err)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const switchTokens = () => {
     setFromToken(toToken)
     setToToken(fromToken)
     setQuote(null)
+    setError('')
   }
 
   return (
@@ -62,7 +86,6 @@ export default function SwapPage() {
       </div>
 
       <div className="max-w-lg mx-auto px-6 md:px-8 py-10">
-
         <div className="bg-white/[0.03] border border-purple-900/30 rounded-2xl p-6 mb-4">
 
           <div className="bg-white/[0.04] border border-purple-900/30 rounded-xl p-4 mb-3">
@@ -77,6 +100,7 @@ export default function SwapPage() {
                   const t = tokens.find(t => t.symbol === e.target.value)!
                   setFromToken(t)
                   setQuote(null)
+                  setError('')
                 }}
                 className="bg-transparent text-gray-200 text-base font-medium outline-none cursor-pointer flex-shrink-0"
               >
@@ -89,7 +113,7 @@ export default function SwapPage() {
               <input
                 type="number"
                 value={amount}
-                onChange={e => { setAmount(e.target.value); setQuote(null) }}
+                onChange={e => { setAmount(e.target.value); setQuote(null); setError('') }}
                 className="bg-transparent text-right text-gray-200 text-xl font-medium w-full outline-none"
                 placeholder="0.00"
                 min="0"
@@ -117,6 +141,7 @@ export default function SwapPage() {
                   const t = tokens.find(t => t.symbol === e.target.value)!
                   setToToken(t)
                   setQuote(null)
+                  setError('')
                 }}
                 className="bg-transparent text-gray-200 text-base font-medium outline-none cursor-pointer flex-shrink-0"
               >
@@ -132,6 +157,12 @@ export default function SwapPage() {
             </div>
             <div className="text-xs text-gray-600 mt-1">{toToken.name}</div>
           </div>
+
+          {error && (
+            <div className="text-xs text-red-400 bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3 mb-4">
+              {error}
+            </div>
+          )}
 
           {quote && (
             <div className="bg-white/[0.02] border border-purple-900/20 rounded-xl p-4 mb-5">
@@ -171,7 +202,6 @@ export default function SwapPage() {
         <div className="text-center text-xs text-gray-600">
           Powered by Jupiter routing — best prices across all Solana DEXs
         </div>
-
       </div>
 
       <Footer />
