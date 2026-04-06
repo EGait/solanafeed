@@ -45,14 +45,17 @@ export default function ProjectList() {
                   {project.badge}
                 </span>
               </div>
+
               <div className="text-xs text-gray-500 leading-relaxed">
                 {project.description}
               </div>
+
               {project.tvl && (
                 <div className="text-xs text-gray-600">
                   TVL <span className="text-gray-400">{project.tvl}</span>
                 </div>
               )}
+
               <button
                 onClick={() => openSwap(project)}
                 className="w-full bg-gradient-to-r from-indigo-500/20 to-purple-600/20 border border-indigo-500/30 text-indigo-300 text-xs py-2 rounded-lg hover:from-indigo-500/30 hover:to-purple-600/30 transition-all"
@@ -68,7 +71,7 @@ export default function ProjectList() {
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
         defaultToMint={selectedProject?.mintAddress}
-        defaultToSymbol={selectedProject?.name}
+        defaultToSymbol={selectedProject?.symbol}
       />
     </div>
   )
