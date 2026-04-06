@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
     }
 
     const res = await fetch(
-      `https://quote-api.jup.ag/v4/quote?inputMint=${inputMint}&outputMint=${outputMint}&amount=${amount}&slippageBps=50`
+      `https://quote-api.jup.ag/v6/quote?inputMint=${inputMint}&outputMint=${outputMint}&amount=${amount}&slippageBps=50`
     )
 
     if (!res.ok) {
