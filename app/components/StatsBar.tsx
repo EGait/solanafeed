@@ -1,8 +1,8 @@
 const stats = [
-  { value: '500+', label: 'Solana projects tracked' },
-  { value: 'Daily', label: 'News updates' },
+  { value: 'Daily', label: 'Solana news updates' },
   { value: 'Live', label: 'Token swap quotes' },
-  { value: '100K+', label: 'Monthly readers' },
+  { value: 'Top', label: 'Solana projects tracked' },
+  { value: 'Free', label: 'Always free to use' },
 ]
 
 export default function StatsBar() {

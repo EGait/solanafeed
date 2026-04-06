@@ -1,122 +1,116 @@
-'use client'
+export const projects = [
+  {
+    id: 1,
+    name: "HYLO",
+    description: "Solana's decentralized stablecoin protocol backed by LSTs, offering yield-bearing stable assets.",
+    category: "DeFi",
+    icon: "💎",
+    badge: "Trending",
+    badgeType: "hot",
+    website: "https://hylo.so",
+    tvl: "$120M",
+    featured: true,
+    symbol: "HYLO",
+    mintAddress: "HYLoNsGJrPuBdSsTMLFBjEBGVdGHJrFjqBSe6nPzGxmM",
+  },
+  {
+    id: 2,
+    name: "Bonk",
+    description: "The first Solana dog coin, community owned and one of the most traded tokens in the Solana ecosystem.",
+    category: "DeFi",
+    icon: "🐕",
+    badge: "Trending",
+    badgeType: "hot",
+    website: "https://bonkcoin.com",
+    tvl: null,
+    featured: true,
+    symbol: "BONK",
+    mintAddress: "DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263",
+  },
+  {
+    id: 3,
+    name: "Marinade Finance",
+    description: "Liquid staking protocol for Solana, letting you stake SOL while keeping your tokens liquid.",
+    category: "Staking",
+    icon: "🏦",
+    badge: "+8.1%",
+    badgeType: "up",
+    website: "https://marinade.finance",
+    tvl: "$400M",
+    featured: true,
+    symbol: "MNDE",
+    mintAddress: "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
+  },
+  {
+    id: 4,
+    name: "Jupiter",
+    description: "The leading DEX aggregator on Solana, routing swaps across all major liquidity sources for the best prices.",
+    category: "DeFi",
+    icon: "⚡",
+    badge: "+12.4%",
+    badgeType: "up",
+    website: "https://jup.ag",
+    tvl: "$2.1B",
+    featured: true,
+    symbol: "JUP",
+    mintAddress: "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
+  },
+  {
+    id: 5,
+    name: "StockX",
+    description: "Real world asset trading platform bringing sneakers, streetwear, and collectibles on-chain via Solana.",
+    category: "RWA",
+    icon: "👟",
+    badge: "New",
+    badgeType: "new",
+    website: "https://stockx.com",
+    tvl: null,
+    featured: false,
+    symbol: "USDC",
+    mintAddress: "EPjFWdd5Au1v1pJLa8k7VNe9gG2rZ9x0h8axVLPGd8N",
+  },
+  {
+    id: 6,
+    name: "Sanctum",
+    description: "The liquidity layer for all Solana LSTs, making it easy to swap between any liquid staking tokens instantly.",
+    category: "Staking",
+    icon: "♾️",
+    badge: "Top",
+    badgeType: "hot",
+    website: "https://sanctum.so",
+    tvl: "$90M",
+    featured: false,
+    symbol: "INF",
+    mintAddress: "5oVNBeEEQvYi1cX3ir8Dx5n1P7pdxydbGF2X4TxVusJm",
+  },
+  {
+    id: 7,
+    name: "Kamino Finance",
+    description: "Automated liquidity and lending protocol optimizing yields across Solana DeFi.",
+    category: "DeFi",
+    icon: "⚙️",
+    badge: "+5.2%",
+    badgeType: "up",
+    website: "https://kamino.finance",
+    tvl: "$600M",
+    featured: false,
+    symbol: "KMNO",
+    mintAddress: "KMNo3nJsBXfcpJTVhZcXLW7RmTwTt4GVFE7suUBo9sS",
+  },
+  {
+    id: 8,
+    name: "Jito",
+    description: "MEV-optimized liquid staking on Solana, offering enhanced staking rewards through MEV capture.",
+    category: "Staking",
+    icon: "🚀",
+    badge: "Trending",
+    badgeType: "hot",
+    website: "https://jito.network",
+    tvl: "$1.2B",
+    featured: false,
+    symbol: "JTO",
+    mintAddress: "jtojtomepa8bduh8b5duh5uhduhb8b5duh5uhduhb8",
+  },
+]
 
-import { useState } from 'react'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import { projects, categories } from '../data/projects'
-
-const badgeStyles: Record<string, string> = {
-  up: 'bg-green-500/10 text-green-400',
-  hot: 'bg-purple-500/10 text-purple-400',
-  new: 'bg-indigo-500/10 text-indigo-400',
-}
-
-export default function ProjectsPage() {
-  const [activeCategory, setActiveCategory] = useState('All')
-  const [search, setSearch] = useState('')
-
-  const filtered = projects.filter((p) => {
-    const matchesCategory = activeCategory === 'All' || p.category === activeCategory
-    const matchesSearch =
-      p.name.toLowerCase().includes(search.toLowerCase()) ||
-      p.description.toLowerCase().includes(search.toLowerCase())
-    return matchesCategory && matchesSearch
-  })
-
-  const featured = filtered.filter((p) => p.featured)
-  const rest = filtered.filter((p) => !p.featured)
-
-  return (
-    <main className="bg-[#0a0a0f] min-h-screen text-gray-100">
-      <Navbar />
-      <div className="px-6 md:px-8 py-12 border-b border-purple-900/20 text-center">
-        <div className="inline-block bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs px-3 py-1 rounded-full mb-4">
-          Solana ecosystem
-        </div>
-        <h1 className="text-3xl md:text-4xl font-medium mb-3">
-          Top{' '}
-          <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-            Solana Projects
-          </span>
-        </h1>
-        <p className="text-gray-500 text-sm max-w-md mx-auto">
-          Discover the best projects building on Solana.
-        </p>
-      </div>
-      <div className="px-6 md:px-8 py-8">
-        <div className="flex flex-col sm:flex-row gap-4 mb-8">
-          <input
-            type="text"
-            placeholder="Search projects..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 bg-white/[0.04] border border-purple-900/30 rounded-xl px-4 py-2.5 text-sm text-gray-200 outline-none placeholder-gray-600"
-          />
-          <div className="flex gap-2 flex-wrap">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`text-xs px-4 py-2 rounded-lg border transition-colors ${activeCategory === cat ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-300' : 'border-purple-900/30 text-gray-500 hover:text-gray-300'}`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-        </div>
-        {featured.length > 0 && (
-          <div className="mb-10">
-            <div className="text-xs font-medium text-indigo-500 uppercase tracking-widest mb-4">Featured</div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {featured.map((project) => {
-                return (
-                  <a key={project.id} href={project.website} target="_blank" rel="noopener noreferrer" className="bg-white/[0.03] border border-indigo-500/20 rounded-2xl p-5 hover:border-indigo-500/40 transition-colors block">
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-xl">{project.icon}</div>
-                      <span className={`text-xs px-2 py-0.5 rounded ${badgeStyles[project.badgeType]}`}>{project.badge}</span>
-                    </div>
-                    <div className="font-medium text-gray-200 mb-1">{project.name}</div>
-                    <div className="text-xs text-gray-500 leading-relaxed mb-3">{project.description}</div>
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded">{project.category}</span>
-                      {project.tvl && <span className="text-xs text-gray-600">TVL {project.tvl}</span>}
-                    </div>
-                  </a>
-                )
-              })}
-            </div>
-          </div>
-        )}
-        {rest.length > 0 && (
-          <div>
-            <div className="text-xs font-medium text-indigo-500 uppercase tracking-widest mb-4">All Projects</div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {rest.map((project) => {
-                return (
-                  <a key={project.id} href={project.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-4 bg-white/[0.03] border border-purple-900/30 rounded-xl px-4 py-3 hover:border-purple-500/30 transition-colors">
-                    <div className="w-9 h-9 rounded-lg bg-indigo-500/10 flex items-center justify-center text-base flex-shrink-0">{project.icon}</div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-0.5">
-                        <div className="text-sm font-medium text-gray-200">{project.name}</div>
-                        <span className="text-xs bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded">{project.category}</span>
-                      </div>
-                      <div className="text-xs text-gray-600 truncate">{project.description}</div>
-                    </div>
-                    <div className="flex flex-col items-end gap-1 flex-shrink-0">
-                      <span className={`text-xs px-2 py-0.5 rounded ${badgeStyles[project.badgeType]}`}>{project.badge}</span>
-                      {project.tvl && <span className="text-xs text-gray-600">TVL {project.tvl}</span>}
-                    </div>
-                  </a>
-                )
-              })}
-            </div>
-          </div>
-        )}
-        {filtered.length === 0 && (
-          <div className="text-center py-16 text-gray-600">No projects found for "{search}"</div>
-        )}
-      </div>
-      <Footer />
-    </main>
-  )
-}
+export const categories = ["All", "DeFi", "NFT", "Staking", "RWA", "Wallet"]
