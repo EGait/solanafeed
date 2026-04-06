@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 
 const tokens = [
   { symbol: 'SOL', mint: 'So11111111111111111111111111111111111111112', name: 'Solana' },
@@ -163,9 +164,7 @@ export default function SwapPage() {
             {loading ? 'Fetching Quote...' : 'Get Quote'}
           </button>
 
-          <button className="w-full border border-indigo-500/30 text-indigo-300 text-sm py-3 rounded-xl hover:bg-indigo-500/10 transition-colors">
-            Connect Wallet to Swap
-          </button>
+          <WalletMultiButton className="!w-full !bg-transparent !border !border-indigo-500/30 !text-indigo-300 !text-sm !py-3 !rounded-xl hover:!bg-indigo-500/10 !transition-colors !justify-center" />
 
         </div>
 
