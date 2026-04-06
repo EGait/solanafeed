@@ -1,10 +1,10 @@
-import Navbar from '@/app/components/Navbar'
-import Hero from '@/app/components/Hero'
-import StatsBar from '@/app/components/StatsBar'
-import NewsFeed from '@/app/components/NewsFeed'
-import ProjectList from '@/app/components/ProjectList'
-import QuickSwap from '@/app/components/QuickSwap'
-import Footer from '@/app/components/Footer'
+import Navbar from './components/Navbar'
+import Hero from './components/Hero'
+import StatsBar from './components/StatsBar'
+import ProjectList from './components/ProjectList'
+import NewsFeed from './components/NewsFeed'
+import QuickSwap from './components/QuickSwap'
+import Footer from './components/Footer'
 
 export default function Home() {
   return (
@@ -12,10 +12,8 @@ export default function Home() {
       <Navbar />
       <Hero />
       <StatsBar />
-      <div className="grid grid-cols-1 md:grid-cols-2">
-        <NewsFeed />
-        <ProjectList />
-      </div>
+      <ProjectList />
+      <NewsFeed />
       <QuickSwap />
       <Footer />
     </main>

@@ -10,6 +10,8 @@ export const projects = [
     website: "https://jup.ag",
     tvl: "$2.1B",
     featured: true,
+    symbol: "JUP",
+    mintAddress: "JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN",
   },
   {
     id: 2,
@@ -22,6 +24,8 @@ export const projects = [
     website: "https://raydium.io",
     tvl: "$800M",
     featured: true,
+    symbol: "RAY",
+    mintAddress: "4k3Dyjzvzp8eMcFubGzEwQ7GJMd7PmJQa4kbMoqMrBnk",
   },
   {
     id: 3,
@@ -34,6 +38,8 @@ export const projects = [
     website: "https://magiceden.io",
     tvl: null,
     featured: true,
+    symbol: "SOL",
+    mintAddress: "So11111111111111111111111111111111111111112",
   },
   {
     id: 4,
@@ -46,6 +52,8 @@ export const projects = [
     website: "https://marinade.finance",
     tvl: "$400M",
     featured: false,
+    symbol: "MNDE",
+    mintAddress: "MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey",
   },
   {
     id: 5,
@@ -58,6 +66,8 @@ export const projects = [
     website: "https://drift.trade",
     tvl: "$250M",
     featured: false,
+    symbol: "DRIFT",
+    mintAddress: "DriFtupJYLTosbwoN8koMbEYSx54aFAVLddWsbksjwg7",
   },
   {
     id: 6,
@@ -70,6 +80,8 @@ export const projects = [
     website: "https://tensor.trade",
     tvl: null,
     featured: false,
+    symbol: "TNSR",
+    mintAddress: "TNSRxcUxoT9xBG3de7A4BrmHM8vSBkQnPxaKKpTNDGo",
   },
   {
     id: 7,
@@ -82,6 +94,8 @@ export const projects = [
     website: "https://kamino.finance",
     tvl: "$600M",
     featured: false,
+    symbol: "KMNO",
+    mintAddress: "KMNo3nJsBXfcpJTVhZcXLW7RmTwTt4GVFE7suUBo9sS",
   },
   {
     id: 8,
@@ -94,6 +108,8 @@ export const projects = [
     website: "https://jito.network",
     tvl: "$1.2B",
     featured: false,
+    symbol: "JTO",
+    mintAddress: "jtojtomepa8bduh8b5duh5uhduhb8b5duh5uhduhb8",
   },
   {
     id: 9,
@@ -106,6 +122,8 @@ export const projects = [
     website: "https://phantom.app",
     tvl: null,
     featured: false,
+    symbol: "SOL",
+    mintAddress: "So11111111111111111111111111111111111111112",
   },
   {
     id: 10,
@@ -118,6 +136,8 @@ export const projects = [
     website: "https://solend.fi",
     tvl: "$180M",
     featured: false,
+    symbol: "SLND",
+    mintAddress: "SLNDpmoWTVADgEdndyvWzroNL7zSi1dF9PC3xHGtPwp",
   },
 ]
 
