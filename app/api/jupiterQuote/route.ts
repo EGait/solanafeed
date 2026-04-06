@@ -13,23 +13,26 @@ export async function GET(req: NextRequest) {
 
     const url = `https://quote-api.jup.ag/v6/quote?inputMint=${inputMint}&outputMint=${outputMint}&amount=${amount}&slippageBps=50`
 
+    console.log('Fetching Jupiter URL:', url)
+
     const res = await fetch(url, {
-      headers: {
-        'Accept': 'application/json',
-      },
+      headers: { 'Accept': 'application/json' },
       next: { revalidate: 0 }
     })
+
+    console.log('Jupiter response status:', res.status)
 
     if (!res.ok) {
       const text = await res.text()
       console.error('Jupiter API failed:', res.status, text)
-      return NextResponse.json({ error: 'Jupiter API request failed' }, { status: 500 })
+      return NextResponse.json({ error: text }, { status: 500 })
     }
 
     const data = await res.json()
+    console.log('Jupiter data:', JSON.stringify(data).slice(0, 200))
     return NextResponse.json(data)
-  } catch (err) {
-    console.error('Server fetch error:', err)
-    return NextResponse.json({ error: 'Failed to fetch quote' }, { status: 500 })
+  } catch (err: any) {
+    console.error('Server fetch error:', err.message)
+    return NextResponse.json({ error: err.message }, { status: 500 })
   }
 }

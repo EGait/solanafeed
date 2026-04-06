@@ -4,16 +4,16 @@ import { useState } from 'react'
 import { WalletMultiButton } from '@solana/wallet-adapter-react-ui'
 
 const tokens = [
-  { symbol: 'SOL', mint: 'So11111111111111111111111111111111111111112' },
-  { symbol: 'USDC', mint: 'EPjFWdd5Au1v1pJLa8k7VNe9gG2rZ9x0h8axVLPGd8N' },
-  { symbol: 'USDT', mint: 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB' },
-  { symbol: 'RAY', mint: '4k3Dyjzvzp8eMcFubGzEwQ7GJMd7PmJQa4kbMoqMrBnk' },
-  { symbol: 'JUP', mint: 'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN' },
-  { symbol: 'BONK', mint: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263' },
-  { symbol: 'JTO', mint: 'jtojtomepa8bduh8b5duh5uhduhb8b5duh5uhduhb8' },
-  { symbol: 'MNDE', mint: 'MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey' },
-  { symbol: 'jitoSOL', mint: 'J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn' },
-  { symbol: 'mSOL', mint: 'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So' },
+  { symbol: 'SOL', mint: 'So11111111111111111111111111111111111111112', decimals: 9 },
+  { symbol: 'USDC', mint: 'EPjFWdd5Au1v1pJLa8k7VNe9gG2rZ9x0h8axVLPGd8N', decimals: 6 },
+  { symbol: 'USDT', mint: 'Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB', decimals: 6 },
+  { symbol: 'RAY', mint: '4k3Dyjzvzp8eMcFubGzEwQ7GJMd7PmJQa4kbMoqMrBnk', decimals: 6 },
+  { symbol: 'JUP', mint: 'JUPyiwrYJFskUPiHa7hkeR8VUtAeFoSYbKedZNsDvCN', decimals: 6 },
+  { symbol: 'BONK', mint: 'DezXAZ8z7PnrnRJjz3wXBoRgixCa6xjnB7YaB1pPB263', decimals: 5 },
+  { symbol: 'JTO', mint: 'jtojtomepa8bduh8b5duh5uhduhb8b5duh5uhduhb8', decimals: 9 },
+  { symbol: 'MNDE', mint: 'MNDEFzGvMt87ueuHvVU9VcTqsAP5b3fTGPsHuuPA5ey', decimals: 9 },
+  { symbol: 'jitoSOL', mint: 'J1toso1uCk3RLmjorhTtrVwY9HJ7X8V9yYac6Y7kGCPn', decimals: 9 },
+  { symbol: 'mSOL', mint: 'mSoLzYCxHdYgdzU16g5QSh3i5K3z3KZK7ytfqcJm7So', decimals: 9 },
 ]
 
 type Props = {
@@ -44,10 +44,10 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
     setError('')
 
     try {
-      const lamports = Math.floor(parseFloat(amount) * 1e9)
-      const res = await fetch(
-        `/api/jupiterQuote?inputMint=${fromToken.mint}&outputMint=${toToken.mint}&amount=${lamports}`
-      )
+      const inputAmount = Math.floor(parseFloat(amount) * Math.pow(10, fromToken.decimals))
+      const url = `https://quote-api.jup.ag/v6/quote?inputMint=${fromToken.mint}&outputMint=${toToken.mint}&amount=${inputAmount}&slippageBps=50`
+
+      const res = await fetch(url)
       const data = await res.json()
 
       if (data.error) {
@@ -55,7 +55,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
         return
       }
 
-      const outputAmount = (parseInt(data.outAmount) / 1e6).toFixed(4)
+      const outputAmount = (parseInt(data.outAmount) / Math.pow(10, toToken.decimals)).toFixed(4)
       const priceImpact = data.priceImpactPct || '0'
       const rate = (parseFloat(outputAmount) / parseFloat(amount)).toFixed(4)
 
