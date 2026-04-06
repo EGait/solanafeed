@@ -108,12 +108,12 @@ export default function LSTsPage() {
         </div>
       </div>
 
-      <SwapModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        defaultToMint={selectedLST?.mintAddress}
-        defaultToSymbol={selectedLST?.symbol}
-      />
+<SwapModal
+  isOpen={modalOpen}
+  onClose={() => setModalOpen(false)}
+  defaultToMint={selectedLST?.mintAddress}
+  defaultToSymbol={selectedLST?.symbol}
+/>
 
       <Footer />
     </main>

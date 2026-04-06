@@ -113,11 +113,11 @@ export default function StablecoinsPage() {
       </div>
 
       <SwapModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        defaultToMint={selectedCoin?.mintAddress}
-        defaultToSymbol={selectedCoin?.symbol}
-      />
+  isOpen={modalOpen}
+  onClose={() => setModalOpen(false)}
+  defaultToMint={selectedCoin?.mintAddress}
+  defaultToSymbol={selectedCoin?.symbol}
+/>
 
       <Footer />
     </main>
