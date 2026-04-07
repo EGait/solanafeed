@@ -8,9 +8,9 @@ export default function Hero() {
   return (
     <div className="text-center px-6 py-12 md:py-16 border-b border-yellow-900/20">
       <img
-        src="/icon.png"
-        alt="SolanaFeed"
-        className="w-20 h-20 mx-auto mb-6 object-contain"
+      src="/icon.png"
+      alt="SolanaFeed"
+      className="w-36 h-36 mx-auto mb-6 object-contain"
       />
       <div className="inline-block bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs px-3 py-1 rounded-full mb-5">
         Your Solana universe, all in one place
