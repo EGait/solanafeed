@@ -10,16 +10,18 @@ type Props = {
 export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSymbol }: Props) {
   if (!isOpen) return null
 
-  const swapUrl = defaultToMint
-  ? `https://jup.ag/swap/SOL-${defaultToSymbol}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
-  : `https://jup.ag/swap/SOL-USDC?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
+  const swapUrl = defaultToSymbol
+    ? `https://jup.ag/swap/SOL-${defaultToSymbol}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
+    : `https://jup.ag/swap/SOL-USDC?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
       onClick={onClose}
     >
       <div
-        className="bg-[#0f0f1a] border border-purple-900/40 rounded-2xl p-6 w-full max-w-lg mx-4"
+        className="rounded-2xl p-6 w-full max-w-lg mx-4"
+        style={{ backgroundColor: '#0f0f1a', border: '1px solid rgba(201,168,76,0.3)' }}
         onClick={e => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-4">
@@ -34,7 +36,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
           </button>
         </div>
 
-        <div className="rounded-xl overflow-hidden border border-purple-900/30">
+        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid rgba(201,168,76,0.2)' }}>
           <iframe
             src={swapUrl}
             width="100%"

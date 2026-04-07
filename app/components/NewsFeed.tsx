@@ -38,8 +38,8 @@ export default function NewsFeed() {
   }
 
   return (
-    <div className="p-8 border-r border-purple-900/20">
-      <div className="text-xs font-medium text-indigo-500 uppercase tracking-widest mb-5">
+    <div className="px-6 md:px-8 py-8 border-t" style={{ borderColor: 'rgba(201,168,76,0.15)' }}>
+      <div className="text-xs font-medium uppercase tracking-widest mb-5" style={{ color: '#C9A84C' }}>
         Latest News
       </div>
 
@@ -52,14 +52,15 @@ export default function NewsFeed() {
           <div
             key={index}
             onClick={() => openLink(article.link)}
-            className="block py-4 border-b border-white/5 last:border-none hover:opacity-80 transition-opacity cursor-pointer"
+            className="block py-4 border-b cursor-pointer hover:opacity-80 transition-opacity"
+            style={{ borderColor: 'rgba(255,255,255,0.05)' }}
           >
             {article.own ? (
-              <span className="text-xs bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded inline-block mb-2">
+              <span className="text-xs px-2 py-0.5 rounded inline-block mb-2" style={{ backgroundColor: 'rgba(201,168,76,0.1)', color: '#C9A84C' }}>
                 SolanaFeed
               </span>
             ) : (
-              <span className="text-xs bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded inline-block mb-2">
+              <span className="text-xs px-2 py-0.5 rounded inline-block mb-2" style={{ backgroundColor: 'rgba(201,168,76,0.05)', color: '#9A7A3A' }}>
                 Cointelegraph
               </span>
             )}
