@@ -23,15 +23,13 @@ export default function LSTsPage() {
     <main className="bg-[#0a0a0f] min-h-screen text-gray-100">
       <Navbar />
 
-      <div className="px-6 md:px-8 py-12 border-b border-purple-900/20 text-center">
-        <div className="inline-block bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs px-3 py-1 rounded-full mb-4">
+      <div className="px-6 md:px-8 py-12 border-b text-center" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
+        <div className="inline-block text-xs px-3 py-1 rounded-full mb-4 border" style={{ backgroundColor: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)', color: '#C9A84C' }}>
           Liquid Staking
         </div>
         <h1 className="text-3xl md:text-4xl font-medium mb-3">
           Solana{' '}
-          <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-            Liquid Staking Tokens
-          </span>
+          <span style={{ color: '#C9A84C' }}>Liquid Staking Tokens</span>
         </h1>
         <p className="text-gray-500 text-sm max-w-lg mx-auto">
           Stake your SOL and keep it liquid. LSTs let you earn staking rewards while still using your SOL in DeFi.
@@ -39,14 +37,14 @@ export default function LSTsPage() {
       </div>
 
       <div className="px-6 md:px-8 py-8 max-w-5xl mx-auto">
-        <div className="bg-indigo-500/5 border border-indigo-500/20 rounded-2xl p-5 mb-8">
-          <div className="text-xs font-medium text-indigo-400 mb-2">What is liquid staking?</div>
+        <div className="rounded-2xl p-5 mb-8" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}>
+          <div className="text-xs font-medium mb-2" style={{ color: '#C9A84C' }}>What is liquid staking?</div>
           <p className="text-xs text-gray-500 leading-relaxed">
             When you stake SOL normally it gets locked up and you can not use it. Liquid staking gives you a token that represents your staked SOL — you earn staking rewards while still being able to use that token in DeFi protocols, swap it, or sell it anytime.
           </p>
         </div>
 
-        <div className="text-xs font-medium text-indigo-500 uppercase tracking-widest mb-6">
+        <div className="text-xs font-medium uppercase tracking-widest mb-6" style={{ color: '#C9A84C' }}>
           Top LSTs on Solana
         </div>
 
@@ -55,11 +53,12 @@ export default function LSTsPage() {
             return (
               <div
                 key={lst.id}
-                className="bg-white/[0.03] border border-purple-900/30 rounded-2xl p-5 flex flex-col gap-3 hover:border-purple-500/30 transition-colors"
+                className="rounded-2xl p-5 flex flex-col gap-3 transition-colors"
+                style={{ backgroundColor: 'rgba(201,168,76,0.03)', border: '1px solid rgba(201,168,76,0.15)' }}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-xl">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
                       {lst.icon}
                     </div>
                     <div>
@@ -67,21 +66,15 @@ export default function LSTsPage() {
                       <div className="text-xs text-gray-600">{lst.symbol}</div>
                     </div>
                   </div>
-                  <span className={`text-xs px-2 py-0.5 rounded ${
-                    lst.badgeType === 'up' ? 'bg-green-500/10 text-green-400' :
-                    lst.badgeType === 'hot' ? 'bg-purple-500/10 text-purple-400' :
-                    'bg-indigo-500/10 text-indigo-400'
-                  }`}>
+                  <span className="text-xs px-2 py-0.5 rounded" style={{ backgroundColor: 'rgba(201,168,76,0.1)', color: '#C9A84C' }}>
                     {lst.badge}
                   </span>
                 </div>
-                <div className="text-xs text-gray-500 leading-relaxed">
-                  {lst.description}
-                </div>
+                <div className="text-xs text-gray-500 leading-relaxed">{lst.description}</div>
                 <div className="flex gap-4 text-xs">
                   <div>
                     <span className="text-gray-600">APY </span>
-                    <span className="text-green-400 font-medium">{lst.apy}</span>
+                    <span className="font-medium" style={{ color: '#C9A84C' }}>{lst.apy}</span>
                   </div>
                   <div>
                     <span className="text-gray-600">TVL </span>
@@ -91,13 +84,15 @@ export default function LSTsPage() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => openSwap(lst)}
-                    className="flex-1 bg-gradient-to-r from-indigo-500/20 to-purple-600/20 border border-indigo-500/30 text-indigo-300 text-xs py-2 rounded-lg hover:from-indigo-500/30 hover:to-purple-600/30 transition-all"
+                    className="flex-1 text-xs py-2 rounded-lg transition-all"
+                    style={{ backgroundColor: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C' }}
                   >
                     Swap → {lst.symbol}
                   </button>
                   <button
                     onClick={() => visitSite(lst.website)}
-                    className="px-3 py-2 border border-purple-900/30 text-gray-500 text-xs rounded-lg hover:text-gray-300 transition-colors"
+                    className="px-3 py-2 text-xs rounded-lg transition-colors text-gray-500 hover:text-gray-300"
+                    style={{ border: '1px solid rgba(201,168,76,0.15)' }}
                   >
                     Visit
                   </button>
@@ -108,12 +103,12 @@ export default function LSTsPage() {
         </div>
       </div>
 
-<SwapModal
-  isOpen={modalOpen}
-  onClose={() => setModalOpen(false)}
-  defaultToMint={selectedLST?.mintAddress}
-  defaultToSymbol={selectedLST?.symbol}
-/>
+      <SwapModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        defaultToMint={selectedLST?.mintAddress}
+        defaultToSymbol={selectedLST?.symbol}
+      />
 
       <Footer />
     </main>

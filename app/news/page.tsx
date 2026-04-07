@@ -57,15 +57,13 @@ export default function NewsPage() {
     <main className="bg-[#0a0a0f] min-h-screen text-gray-100">
       <Navbar />
 
-      <div className="px-6 md:px-8 py-12 border-b border-purple-900/20 text-center">
-        <div className="inline-block bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs px-3 py-1 rounded-full mb-4">
+      <div className="px-6 md:px-8 py-12 border-b text-center" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
+        <div className="inline-block text-xs px-3 py-1 rounded-full mb-4 border" style={{ backgroundColor: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)', color: '#C9A84C' }}>
           Solana news
         </div>
         <h1 className="text-3xl md:text-4xl font-medium mb-3">
           Latest{' '}
-          <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-            Solana News
-          </span>
+          <span style={{ color: '#C9A84C' }}>Solana News</span>
         </h1>
         <p className="text-gray-500 text-sm max-w-md mx-auto">
           Stay up to date with everything happening in the Solana ecosystem.
@@ -73,25 +71,29 @@ export default function NewsPage() {
       </div>
 
       <div className="px-6 md:px-8 py-8 max-w-4xl mx-auto">
-
         <div className="flex flex-col sm:flex-row gap-4 mb-8">
           <input
             type="text"
             placeholder="Search news..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="flex-1 bg-white/[0.04] border border-purple-900/30 rounded-xl px-4 py-2.5 text-sm text-gray-200 outline-none placeholder-gray-600 focus:border-indigo-500/50"
+            className="flex-1 rounded-xl px-4 py-2.5 text-sm text-gray-200 outline-none placeholder-gray-600 bg-white/[0.04]"
+            style={{ border: '1px solid rgba(201,168,76,0.2)' }}
           />
           <div className="flex gap-2 flex-wrap">
             {tags.map((tag) => (
               <button
                 key={tag}
                 onClick={() => setActiveTag(tag)}
-                className={`text-xs px-4 py-2 rounded-lg border transition-colors ${
-                  activeTag === tag
-                    ? 'bg-indigo-500/20 border-indigo-500/50 text-indigo-300'
-                    : 'border-purple-900/30 text-gray-500 hover:text-gray-300'
-                }`}
+                className="text-xs px-4 py-2 rounded-lg transition-colors"
+                style={activeTag === tag ? {
+                  backgroundColor: 'rgba(201,168,76,0.2)',
+                  border: '1px solid rgba(201,168,76,0.5)',
+                  color: '#C9A84C',
+                } : {
+                  border: '1px solid rgba(201,168,76,0.15)',
+                  color: '#888888',
+                }}
               >
                 {tag}
               </button>
@@ -105,7 +107,7 @@ export default function NewsPage() {
 
         {ownFiltered.length > 0 && (
           <div className="mb-10">
-            <div className="text-xs font-medium text-indigo-500 uppercase tracking-widest mb-4">
+            <div className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: '#C9A84C' }}>
               From SolanaFeed
             </div>
             <div className="flex flex-col gap-3">
@@ -114,29 +116,24 @@ export default function NewsPage() {
                   <div
                     key={index}
                     onClick={() => openArticle(article.link)}
-                    className="bg-indigo-500/5 border border-indigo-500/20 rounded-2xl p-5 cursor-pointer hover:border-indigo-500/40 transition-colors"
+                    className="rounded-2xl p-5 cursor-pointer transition-colors"
+                    style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <span className="text-xs bg-indigo-500/10 text-indigo-400 px-2 py-0.5 rounded inline-block mb-2">
-                          SolanaFeed
-                        </span>
-                        <div className="text-sm font-medium text-gray-200 leading-snug mb-2">
-                          {article.title}
-                        </div>
-                        {article.summary && (
-                          <div className="text-xs text-gray-500 leading-relaxed mb-2">
-                            {article.summary}
-                          </div>
-                        )}
-                        <div className="text-xs text-gray-600">
-                          {new Date(article.date).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric',
-                          })}
-                        </div>
+                    <span className="text-xs px-2 py-0.5 rounded inline-block mb-2" style={{ backgroundColor: 'rgba(201,168,76,0.1)', color: '#C9A84C' }}>
+                      SolanaFeed
+                    </span>
+                    <div className="text-sm font-medium text-gray-200 leading-snug mb-2">
+                      {article.title}
+                    </div>
+                    {article.summary && (
+                      <div className="text-xs text-gray-500 leading-relaxed mb-2">
+                        {article.summary}
                       </div>
+                    )}
+                    <div className="text-xs text-gray-600">
+                      {new Date(article.date).toLocaleDateString('en-US', {
+                        month: 'short', day: 'numeric', year: 'numeric',
+                      })}
                     </div>
                   </div>
                 )
@@ -147,7 +144,7 @@ export default function NewsPage() {
 
         {ctFiltered.length > 0 && (
           <div>
-            <div className="text-xs font-medium text-indigo-500 uppercase tracking-widest mb-4">
+            <div className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: '#C9A84C' }}>
               From Cointelegraph
             </div>
             <div className="flex flex-col gap-3">
@@ -156,29 +153,24 @@ export default function NewsPage() {
                   <div
                     key={index}
                     onClick={() => openArticle(article.link)}
-                    className="bg-white/[0.03] border border-purple-900/30 rounded-2xl p-5 cursor-pointer hover:border-purple-500/30 transition-colors"
+                    className="rounded-2xl p-5 cursor-pointer transition-colors"
+                    style={{ backgroundColor: 'rgba(201,168,76,0.03)', border: '1px solid rgba(201,168,76,0.15)' }}
                   >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1">
-                        <span className="text-xs bg-purple-500/10 text-purple-400 px-2 py-0.5 rounded inline-block mb-2">
-                          Cointelegraph
-                        </span>
-                        <div className="text-sm font-medium text-gray-200 leading-snug mb-2">
-                          {article.title}
-                        </div>
-                        {article.summary && (
-                          <div className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-2">
-                            {article.summary}
-                          </div>
-                        )}
-                        <div className="text-xs text-gray-600">
-                          {new Date(article.date).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            year: 'numeric',
-                          })}
-                        </div>
+                    <span className="text-xs px-2 py-0.5 rounded inline-block mb-2" style={{ backgroundColor: 'rgba(201,168,76,0.05)', color: '#9A7A3A' }}>
+                      Cointelegraph
+                    </span>
+                    <div className="text-sm font-medium text-gray-200 leading-snug mb-2">
+                      {article.title}
+                    </div>
+                    {article.summary && (
+                      <div className="text-xs text-gray-500 leading-relaxed line-clamp-2 mb-2">
+                        {article.summary}
                       </div>
+                    )}
+                    <div className="text-xs text-gray-600">
+                      {new Date(article.date).toLocaleDateString('en-US', {
+                        month: 'short', day: 'numeric', year: 'numeric',
+                      })}
                     </div>
                   </div>
                 )
@@ -192,7 +184,6 @@ export default function NewsPage() {
             No articles found for "{search}"
           </div>
         )}
-
       </div>
 
       <Footer />
