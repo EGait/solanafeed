@@ -2,7 +2,7 @@ export const lsts = [
   {
     id: 1,
     name: "Jito SOL",
-    symbol: "jitoSOL",
+    symbol: "JITOSOL",
     description: "MEV-boosted liquid staking token from Jito. Earns staking rewards plus MEV tips from validators.",
     apy: "8.2%",
     tvl: "$1.2B",
