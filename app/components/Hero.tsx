@@ -6,13 +6,13 @@ export default function Hero() {
   const router = useRouter()
 
   return (
-    <div className="text-center px-6 py-12 md:py-16 border-b border-purple-900/20">
-      <div className="inline-block bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 text-xs px-3 py-1 rounded-full mb-5">
+    <div className="text-center px-6 py-12 md:py-16 border-b" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
+      <div className="inline-block text-xs px-3 py-1 rounded-full mb-5 border" style={{ backgroundColor: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)', color: '#C9A84C' }}>
         Your Solana universe, all in one place
       </div>
       <h1 className="text-3xl md:text-4xl font-medium leading-tight mb-4">
         The hub for everything{" "}
-        <span className="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+        <span style={{ color: '#C9A84C' }}>
           Solana
         </span>
       </h1>
@@ -22,13 +22,15 @@ export default function Hero() {
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <button
           onClick={() => router.push('/projects')}
-          className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm px-5 py-2 rounded-lg"
+          className="text-sm px-5 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity"
+          style={{ backgroundColor: '#C9A84C', color: '#0a0a0f' }}
         >
           Explore Projects
         </button>
         <button
           onClick={() => router.push('/news')}
-          className="border border-indigo-500/40 text-indigo-300 text-sm px-5 py-2 rounded-lg"
+          className="text-sm px-5 py-2 rounded-lg hover:opacity-80 transition-opacity border"
+          style={{ borderColor: '#C9A84C', color: '#C9A84C' }}
         >
           Read Latest News
         </button>

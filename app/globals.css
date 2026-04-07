@@ -1,6 +1,13 @@
 @import '@solana/wallet-adapter-react-ui/styles.css';
 @import "tailwindcss";
 
+:root {
+  --gold: #C9A84C;
+  --gold-hover: #D4B85A;
+  --gold-subtle: rgba(201, 168, 76, 0.1);
+  --gold-border: rgba(201, 168, 76, 0.2);
+}
+
 body {
   background-color: #0a0a0f;
   color: #e8e8f0;
