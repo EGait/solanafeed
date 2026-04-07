@@ -1,3 +1,5 @@
+'use client'
+
 export default function Hero() {
   return (
     <div className="text-center px-6 py-12 md:py-16 border-b border-purple-900/20">
@@ -14,10 +16,16 @@ export default function Hero() {
         Top projects, breaking news, and token swaps — all in one place for the Solana ecosystem.
       </p>
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
-        <button className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm px-5 py-2 rounded-lg">
+        <button
+          onClick={() => window.location.href = '/projects'}
+          className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white text-sm px-5 py-2 rounded-lg"
+        >
           Explore Projects
         </button>
-        <button className="border border-indigo-500/40 text-indigo-300 text-sm px-5 py-2 rounded-lg">
+        <button
+          onClick={() => window.location.href = '/news'}
+          className="border border-indigo-500/40 text-indigo-300 text-sm px-5 py-2 rounded-lg"
+        >
           Read Latest News
         </button>
       </div>
