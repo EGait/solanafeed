@@ -8,8 +8,9 @@ export default function Navbar() {
   return (
     <nav className="border-b bg-[#0a0a0f]/95" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
       <div className="flex items-center justify-between px-6 py-4">
-        <a href="/">
-  <img src="/logo.png" alt="SolanaFeed" className="h-8 object-contain" />
+        <a href="/" className="flex items-center gap-2">
+  <img src="/icon.png" alt="SolanaFeed" className="h-8 w-8 object-contain" />
+  <span className="text-xl font-medium" style={{ color: '#C9A84C' }}>SolanaFeed</span>
 </a>
         <div className="hidden md:flex gap-6">
           <a href="/" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">Home</a>
