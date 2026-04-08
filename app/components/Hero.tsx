@@ -7,6 +7,11 @@ export default function Hero() {
 
   return (
     <div className="text-center px-6 py-12 md:py-16 border-b" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
+      <img
+        src="/icon.png"
+        alt="SolanaFeed"
+        className="w-24 h-24 mx-auto mb-6 object-contain"
+      />
       <div className="inline-block text-xs px-3 py-1 rounded-full mb-5 border" style={{ backgroundColor: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)', color: '#C9A84C' }}>
         Your Solana universe, all in one place
       </div>

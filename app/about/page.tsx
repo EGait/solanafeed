@@ -67,10 +67,10 @@ export default function AboutPage() {
           <div className="flex gap-4">
             <div
               onClick={() => window.open('https://x.com/SolanaFeedHQ', '_blank')}
-              className="flex items-center gap-2 rounded-xl px-4 py-3 cursor-pointer text-sm text-gray-400 hover:text-gray-300 transition-colors"
-              style={{ backgroundColor: 'rgba(201,168,76,0.03)', border: '1px solid rgba(201,168,76,0.15)' }}
+              className="flex items-center gap-2 rounded-xl px-4 py-3 cursor-pointer text-sm hover:opacity-80 transition-opacity"
+              style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.2)', color: '#C9A84C' }}
             >
-              <span>X</span>
+              <span>𝕏</span>
               <span>@SolanaFeedHQ</span>
             </div>
           </div>
@@ -82,7 +82,7 @@ export default function AboutPage() {
             We are always looking for quality Solana projects to feature on SolanaFeed. Get in touch and lets talk.
           </p>
           <div
-            onClick={() => window.location.href = 'mailto:hello@solanafeed.com'}
+            onClick={() => window.location.href = 'mailto:SolanaFeedHQ@gmail.com'}
             className="inline-block text-sm px-5 py-2 rounded-lg cursor-pointer hover:opacity-90 transition-opacity font-medium"
             style={{ backgroundColor: '#C9A84C', color: '#0a0a0f' }}
           >
