@@ -10,7 +10,7 @@ export const projects = [
     website: "https://hylo.so",
     tvl: "$120M",
     featured: true,
-    symbol: "xSol",
+    symbol: "xSOL",
     mintAddress: "4sWNB8zGWHkh6UnmwiEtzNxL4XrN7uK9tosbESbJFfVs",
   },
   {
