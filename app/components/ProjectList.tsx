@@ -1,53 +1,14 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import SwapModal from './SwapModal'
 import { projects } from '../data/projects'
-
-type Prices = {
-  [key: string]: {
-    usd: number
-    usd_24h_change: number
-  }
-}
-
-const coingeckoIds: Record<string, string> = {
-  'JUP': 'jupiter-exchange-solana',
-  'BONK': 'bonk',
-  'RAY': 'raydium',
-  'MNDE': 'marinade',
-  'JTO': 'jito-governance-token',
-  'KMNO': 'kamino',
-  'SOL': 'solana',
-  'jitoSOL': 'jito-staked-sol',
-  'mSOL': 'marinade-staked-sol',
-}
 
 export default function ProjectList() {
   const [modalOpen, setModalOpen] = useState(false)
   const [selectedProject, setSelectedProject] = useState<any>(null)
-  const [prices, setPrices] = useState<Prices>({})
 
   const topProjects = projects.slice(0, 6)
-
-  useEffect(() => {
-    const fetchPrices = async () => {
-      try {
-        const res = await fetch('/api/prices')
-        const data = await res.json()
-        setPrices(data)
-      } catch (err) {
-        console.error('Price fetch error:', err)
-      }
-    }
-    fetchPrices()
-  }, [])
-
-  const getPrice = (symbol: string) => {
-    const id = coingeckoIds[symbol]
-    if (!id || !prices[id]) return null
-    return prices[id]
-  }
 
   const openSwap = (project: any) => {
     setSelectedProject(project)
@@ -61,7 +22,6 @@ export default function ProjectList() {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {topProjects.map((project) => {
-          const price = getPrice(project.symbol)
           return (
             <div
               key={project.id}
@@ -78,22 +38,9 @@ export default function ProjectList() {
                     <div className="text-xs text-gray-600">{project.category}</div>
                   </div>
                 </div>
-                <div className="text-right">
-                  {price ? (
-                    <div>
-                      <div className="text-sm font-medium text-gray-200">
-                        ${price.usd < 0.01 ? price.usd.toFixed(6) : price.usd.toFixed(2)}
-                      </div>
-                      <div className={`text-xs ${price.usd_24h_change >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                        {price.usd_24h_change >= 0 ? '+' : ''}{price.usd_24h_change.toFixed(2)}%
-                      </div>
-                    </div>
-                  ) : (
-                    <span className="text-xs px-2 py-0.5 rounded" style={{ backgroundColor: 'rgba(201,168,76,0.1)', color: '#C9A84C' }}>
-                      {project.badge}
-                    </span>
-                  )}
-                </div>
+                <span className="text-xs px-2 py-0.5 rounded" style={{ backgroundColor: 'rgba(201,168,76,0.1)', color: '#C9A84C' }}>
+                  {project.badge}
+                </span>
               </div>
               <div className="text-xs text-gray-500 leading-relaxed">
                 {project.description}
