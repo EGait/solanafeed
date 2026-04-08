@@ -33,13 +33,22 @@ export default function ProjectPage() {
       <Navbar />
 
       <div className="max-w-3xl mx-auto px-6 md:px-8 py-12">
-        <button
-          onClick={() => router.push('/projects')}
-          className="text-xs mb-8 hover:opacity-80 transition-opacity flex items-center gap-2"
-          style={{ color: '#C9A84C' }}
-        >
-          ← Back to projects
-        </button>
+        <div className="flex items-center justify-between mb-8">
+  <button
+    onClick={() => router.push('/projects')}
+    className="text-xs hover:opacity-80 transition-opacity flex items-center gap-2"
+    style={{ color: '#C9A84C' }}
+  >
+    ← Back to projects
+  </button>
+  <button
+    onClick={() => router.push('/projects')}
+    className="w-8 h-8 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity text-gray-400"
+    style={{ backgroundColor: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.2)' }}
+  >
+    ✕
+  </button>
+</div>
 
         {/* Header */}
         <div className="rounded-2xl p-8 mb-6" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}>
