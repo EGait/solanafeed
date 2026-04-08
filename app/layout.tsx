@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   keywords: ['Solana', 'SOL', 'Solana news', 'Solana projects', 'Solana DeFi', 'token swap', 'LSTs', 'stablecoins', 'Jupiter swap'],
   authors: [{ name: 'SolanaFeed' }],
   creator: 'SolanaFeed',
+  verification: {
+    google: '_h04YZtfSVpN785-q_fgxfCBUyaXgUsU6LTcj4Ac0lI',
+  },
   openGraph: {
     type: 'website',
     url: 'https://solanafeed.com',
