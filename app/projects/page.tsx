@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { projects, categories } from '../data/projects'
@@ -11,6 +12,7 @@ const badgeStyles = {
 }
 
 export default function ProjectsPage() {
+  const router = useRouter()
   const [activeCategory, setActiveCategory] = useState('All')
   const [search, setSearch] = useState('')
 
@@ -85,8 +87,8 @@ export default function ProjectsPage() {
                 return (
                   <div
                     key={project.id}
-                    onClick={() => window.open(project.website, '_blank')}
-                    className="rounded-2xl p-5 cursor-pointer transition-colors"
+                    onClick={() => router.push(`/projects/${project.slug}`)}
+                    className="rounded-2xl p-5 cursor-pointer transition-all hover:scale-[1.02]"
                     style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}
                   >
                     <div className="flex items-center justify-between mb-3">
@@ -126,8 +128,8 @@ export default function ProjectsPage() {
                 return (
                   <div
                     key={project.id}
-                    onClick={() => window.open(project.website, '_blank')}
-                    className="flex items-center gap-4 rounded-xl px-4 py-3 cursor-pointer transition-colors"
+                    onClick={() => router.push(`/projects/${project.slug}`)}
+                    className="flex items-center gap-4 rounded-xl px-4 py-3 cursor-pointer transition-all hover:scale-[1.01]"
                     style={{ backgroundColor: 'rgba(201,168,76,0.03)', border: '1px solid rgba(201,168,76,0.15)' }}
                   >
                     <div className="w-9 h-9 rounded-lg flex items-center justify-center text-base flex-shrink-0" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
