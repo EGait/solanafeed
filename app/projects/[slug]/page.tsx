@@ -1,7 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
-import { useParams } from 'next/navigation'
+import { useRouter, useParams } from 'next/navigation'
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
 import SwapModal from '../../components/SwapModal'
@@ -42,7 +41,8 @@ export default function ProjectPage() {
           ← Back to projects
         </button>
 
-        <div className="rounded-2xl p-8 mb-8" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}>
+        {/* Header */}
+        <div className="rounded-2xl p-8 mb-6" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}>
           <div className="flex items-start justify-between mb-6">
             <div className="flex items-center gap-4">
               <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
@@ -55,14 +55,14 @@ export default function ProjectPage() {
                     {project.category}
                   </span>
                   <span className="text-xs px-2 py-0.5 rounded" style={{ backgroundColor: 'rgba(201,168,76,0.1)', color: '#C9A84C' }}>
-                    {project.badge}
+                    {project.chain}
                   </span>
                 </div>
               </div>
             </div>
             <button
               onClick={() => setModalOpen(true)}
-              className="text-sm px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity"
+              className="text-sm px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity flex-shrink-0"
               style={{ backgroundColor: '#C9A84C', color: '#0a0a0f' }}
             >
               Swap → {project.symbol}
@@ -73,27 +73,33 @@ export default function ProjectPage() {
             {project.longDescription}
           </p>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            {project.tvl && (
-              <div className="rounded-xl p-3" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}>
+          {/* Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+            {project.stats.tvl && (
+              <div className="rounded-xl p-3 text-center" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}>
                 <div className="text-xs text-gray-600 mb-1">TVL</div>
-                <div className="text-sm font-medium" style={{ color: '#C9A84C' }}>{project.tvl}</div>
+                <div className="text-sm font-medium" style={{ color: '#C9A84C' }}>{project.stats.tvl}</div>
               </div>
             )}
-            <div className="rounded-xl p-3" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}>
-              <div className="text-xs text-gray-600 mb-1">Chain</div>
-              <div className="text-sm font-medium" style={{ color: '#C9A84C' }}>{project.chain}</div>
-            </div>
-            <div className="rounded-xl p-3" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}>
+            {project.stats.volume24h && (
+              <div className="rounded-xl p-3 text-center" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}>
+                <div className="text-xs text-gray-600 mb-1">24h Volume</div>
+                <div className="text-sm font-medium" style={{ color: '#C9A84C' }}>{project.stats.volume24h}</div>
+              </div>
+            )}
+            {project.stats.users && (
+              <div className="rounded-xl p-3 text-center" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}>
+                <div className="text-xs text-gray-600 mb-1">Users</div>
+                <div className="text-sm font-medium" style={{ color: '#C9A84C' }}>{project.stats.users}</div>
+              </div>
+            )}
+            <div className="rounded-xl p-3 text-center" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}>
               <div className="text-xs text-gray-600 mb-1">Founded</div>
-              <div className="text-sm font-medium" style={{ color: '#C9A84C' }}>{project.founded}</div>
-            </div>
-            <div className="rounded-xl p-3" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}>
-              <div className="text-xs text-gray-600 mb-1">Token</div>
-              <div className="text-sm font-medium" style={{ color: '#C9A84C' }}>{project.symbol}</div>
+              <div className="text-sm font-medium" style={{ color: '#C9A84C' }}>{project.stats.founded}</div>
             </div>
           </div>
 
+          {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-6">
             {project.tags.map((tag) => (
               <span key={tag} className="text-xs px-3 py-1 rounded-full" style={{ backgroundColor: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.2)', color: '#C9A84C' }}>
@@ -102,6 +108,7 @@ export default function ProjectPage() {
             ))}
           </div>
 
+          {/* Links */}
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => window.open(project.website, '_blank')}
@@ -140,6 +147,28 @@ export default function ProjectPage() {
           </div>
         </div>
 
+        {/* Products */}
+        {project.products && project.products.length > 0 && (
+          <div className="mb-8">
+            <div className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: '#C9A84C' }}>
+              Products & Features
+            </div>
+            <div className="flex flex-col gap-3">
+              {project.products.map((product, index) => (
+                <div
+                  key={index}
+                  className="rounded-xl p-4"
+                  style={{ backgroundColor: 'rgba(201,168,76,0.03)', border: '1px solid rgba(201,168,76,0.12)' }}
+                >
+                  <div className="text-sm font-medium text-gray-200 mb-1">{product.name}</div>
+                  <div className="text-xs text-gray-500 leading-relaxed">{product.description}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Related Projects */}
         {relatedProjects.length > 0 && (
           <div>
             <div className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: '#C9A84C' }}>
