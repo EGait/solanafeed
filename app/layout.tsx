@@ -5,8 +5,34 @@ import ServiceWorker from './components/ServiceWorker'
 
 export const metadata: Metadata = {
   title: 'SolanaFeed — The hub for everything Solana',
-  description: 'Top Solana projects, breaking news, and token swaps all in one place.',
+  description: 'Discover top Solana projects, read the latest Solana news, and swap tokens — all in one place. Your go-to Solana ecosystem hub.',
   manifest: '/manifest.json',
+  keywords: ['Solana', 'SOL', 'Solana news', 'Solana projects', 'Solana DeFi', 'token swap', 'LSTs', 'stablecoins', 'Jupiter swap'],
+  authors: [{ name: 'SolanaFeed' }],
+  creator: 'SolanaFeed',
+  openGraph: {
+    type: 'website',
+    url: 'https://solanafeed.com',
+    title: 'SolanaFeed — The hub for everything Solana',
+    description: 'Discover top Solana projects, read the latest Solana news, and swap tokens — all in one place.',
+    siteName: 'SolanaFeed',
+    images: [
+      {
+        url: 'https://solanafeed.com/logo.png',
+        width: 800,
+        height: 400,
+        alt: 'SolanaFeed',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@SolanaFeedHQ',
+    creator: '@SolanaFeedHQ',
+    title: 'SolanaFeed — The hub for everything Solana',
+    description: 'Discover top Solana projects, read the latest Solana news, and swap tokens — all in one place.',
+    images: ['https://solanafeed.com/logo.png'],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
@@ -18,7 +44,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#6366f1',
+  themeColor: '#C9A84C',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 1,
