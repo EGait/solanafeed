@@ -11,7 +11,7 @@ export const projects = [
     tvl: "$120M",
     featured: true,
     symbol: "xSol",
-    mintAddress: "B5oqBL6DBMo2xBs7MBMH6oCiq9BNGCEhxVprCJWVFYwX",
+    mintAddress: "4sWNB8zGWHkh6UnmwiEtzNxL4XrN7uK9tosbESbJFfVs",
   },
   {
     id: 2,
