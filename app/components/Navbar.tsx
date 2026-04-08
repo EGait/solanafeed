@@ -9,9 +9,10 @@ export default function Navbar() {
     <nav className="border-b bg-[#0a0a0f]/95 sticky top-0 z-50" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
       <div className="flex items-center justify-between px-6 py-4">
         <a href="/" className="flex items-center gap-2">
-  <img src="/icon.png" alt="SolanaFeed" className="h-8 w-8 object-contain" />
-  <span className="text-xl font-medium" style={{ color: '#C9A84C' }}>SolanaFeed</span>
-</a>
+          <img src="/icon.png" alt="SolanaFeed" className="h-8 w-8 object-contain" />
+          <span className="text-xl font-medium" style={{ color: '#C9A84C' }}>SolanaFeed</span>
+        </a>
+
         <div className="hidden md:flex gap-6">
           <a href="/" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">Home</a>
           <a href="/projects" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">Projects</a>
@@ -21,9 +22,10 @@ export default function Navbar() {
           <a href="/swap" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">Swap</a>
           <a href="/about" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">About</a>
         </div>
+
         <div className="flex items-center gap-3">
           <a href="/swap" className="hidden md:block text-sm px-4 py-2 rounded-lg font-medium transition-colors" style={{ backgroundColor: '#C9A84C', color: '#0a0a0f' }}>
-            Launch App
+            Launch Jupiter Swap
           </a>
           <button
             onClick={() => setMenuOpen(!menuOpen)}
@@ -46,7 +48,7 @@ export default function Navbar() {
           <a href="/swap" onClick={() => setMenuOpen(false)} className="text-sm text-gray-400 hover:text-yellow-400 transition-colors">Swap</a>
           <a href="/about" onClick={() => setMenuOpen(false)} className="text-sm text-gray-400 hover:text-yellow-400 transition-colors">About</a>
           <a href="/swap" onClick={() => setMenuOpen(false)} className="text-sm px-4 py-2 rounded-lg text-center font-medium" style={{ backgroundColor: '#C9A84C', color: '#0a0a0f' }}>
-            Launch App
+            Launch Jupiter Swap
           </a>
         </div>
       )}
