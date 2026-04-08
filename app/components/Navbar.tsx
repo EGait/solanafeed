@@ -6,7 +6,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <nav className="border-b bg-[#0a0a0f]/95" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
+    <nav className="border-b bg-[#0a0a0f]/95 sticky top-0 z-50" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
       <div className="flex items-center justify-between px-6 py-4">
         <a href="/" className="flex items-center gap-2">
   <img src="/icon.png" alt="SolanaFeed" className="h-8 w-8 object-contain" />

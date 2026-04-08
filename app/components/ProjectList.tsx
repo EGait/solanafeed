@@ -25,7 +25,7 @@ export default function ProjectList() {
           return (
             <div
               key={project.id}
-              className="rounded-2xl p-5 flex flex-col gap-3 transition-colors"
+              className="rounded-2xl p-5 flex flex-col gap-3 transition-all duration-200 hover:scale-[1.02]"
               style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}
             >
               <div className="flex items-center justify-between">

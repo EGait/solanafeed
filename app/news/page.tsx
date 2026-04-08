@@ -102,7 +102,46 @@ export default function NewsPage() {
         </div>
 
         {loading && (
-          <div className="text-xs text-gray-600 py-8 text-center">Loading news...</div>
+          <div className="flex flex-col gap-4">
+            {[1,2,3,4,5].map((i) => (
+              <div key={i} className="py-4 border-b animate-pulse" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
+                <div className="h-3 rounded mb-2 w-16" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }} />
+                <div className="h-4 rounded mb-2 w-full" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }} />
+                <div className="h-4 rounded mb-2 w-3/4" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }} />
+                <div className="h-3 rounded w-24" style={{ backgroundColor: 'rgba(255,255,255,0.03)' }} />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {!loading && ctFiltered.length > 0 && (
+          <div
+            onClick={() => openArticle(ctFiltered[0].link)}
+            className="rounded-2xl p-6 mb-8 cursor-pointer hover:opacity-90 transition-opacity"
+            style={{ backgroundColor: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.25)' }}
+          >
+            <div className="text-xs font-medium uppercase tracking-widest mb-3" style={{ color: '#C9A84C' }}>
+              Featured Article
+            </div>
+            <div className="text-lg font-medium text-gray-100 leading-snug mb-3">
+              {ctFiltered[0].title}
+            </div>
+            {ctFiltered[0].summary && (
+              <div className="text-sm text-gray-500 leading-relaxed mb-3 line-clamp-2">
+                {ctFiltered[0].summary}
+              </div>
+            )}
+            <div className="flex items-center justify-between">
+              <div className="text-xs text-gray-600">
+                {new Date(ctFiltered[0].date).toLocaleDateString('en-US', {
+                  month: 'short', day: 'numeric', year: 'numeric',
+                })}
+              </div>
+              <div className="text-xs font-medium" style={{ color: '#C9A84C' }}>
+                Read article →
+              </div>
+            </div>
+          </div>
         )}
 
         {ownFiltered.length > 0 && (
@@ -116,7 +155,7 @@ export default function NewsPage() {
                   <div
                     key={index}
                     onClick={() => openArticle(article.link)}
-                    className="rounded-2xl p-5 cursor-pointer transition-colors"
+                    className="rounded-2xl p-5 cursor-pointer transition-colors hover:opacity-90"
                     style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}
                   >
                     <span className="text-xs px-2 py-0.5 rounded inline-block mb-2" style={{ backgroundColor: 'rgba(201,168,76,0.1)', color: '#C9A84C' }}>
@@ -153,7 +192,7 @@ export default function NewsPage() {
                   <div
                     key={index}
                     onClick={() => openArticle(article.link)}
-                    className="rounded-2xl p-5 cursor-pointer transition-colors"
+                    className="rounded-2xl p-5 cursor-pointer transition-colors hover:opacity-90"
                     style={{ backgroundColor: 'rgba(201,168,76,0.03)', border: '1px solid rgba(201,168,76,0.15)' }}
                   >
                     <span className="text-xs px-2 py-0.5 rounded inline-block mb-2" style={{ backgroundColor: 'rgba(201,168,76,0.05)', color: '#9A7A3A' }}>

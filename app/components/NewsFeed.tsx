@@ -44,8 +44,17 @@ export default function NewsFeed() {
       </div>
 
       {loading && (
-        <div className="text-xs text-gray-600 py-4">Loading news...</div>
-      )}
+  <div className="flex flex-col gap-4">
+    {[1,2,3,4,5].map((i) => (
+      <div key={i} className="py-4 border-b animate-pulse" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
+        <div className="h-3 rounded mb-2 w-16" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }} />
+        <div className="h-4 rounded mb-2 w-full" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }} />
+        <div className="h-4 rounded mb-2 w-3/4" style={{ backgroundColor: 'rgba(255,255,255,0.05)' }} />
+        <div className="h-3 rounded w-24" style={{ backgroundColor: 'rgba(255,255,255,0.03)' }} />
+      </div>
+    ))}
+  </div>
+)}
 
       {articles.map((article, index) => {
         return (
