@@ -1,15 +1,10 @@
-const CACHE_NAME = 'solanafeed-v1'
+const CACHE_NAME = 'solanafeed-v2'
 const urlsToCache = [
   '/',
-  '/news',
-  '/projects',
-  '/swap',
-  '/lsts',
-  '/stablecoins',
-  '/about',
 ]
 
 self.addEventListener('install', (event) => {
+  self.skipWaiting()
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(urlsToCache)
@@ -19,11 +14,8 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      if (response) {
-        return response
-      }
-      return fetch(event.request)
+    fetch(event.request).catch(() => {
+      return caches.match(event.request)
     })
   )
 })
