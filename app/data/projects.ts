@@ -29,7 +29,7 @@ export const projects = [
     tvl: null,
     featured: true,
     symbol: "SKR",
-    mintAddress: "SKRxHFGKNkGTxPkFoqMGjdXBDqkHNFXrzBKBZRgPxkN",
+    mintAddress: "SKRbvo6Gf7GondiT3BbTfuRDPqLWei4j2Qy2NPGZhW3",
     founded: "2024",
     chain: "Solana",
     tags: ["Mobile", "Hardware", "Web3"],
