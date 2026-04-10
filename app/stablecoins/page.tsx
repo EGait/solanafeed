@@ -48,7 +48,8 @@ export default function StablecoinsPage() {
           Top Stablecoins on Solana
         </div>
 
-        <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(201,168,76,0.15)' }}>
+        {/* Desktop table view */}
+        <div className="hidden md:block rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(201,168,76,0.15)' }}>
           <div className="grid grid-cols-12 px-4 py-3 text-xs font-medium uppercase tracking-widest" style={{ backgroundColor: 'rgba(201,168,76,0.08)', color: '#C9A84C', borderBottom: '1px solid rgba(201,168,76,0.15)' }}>
             <div className="col-span-3">Token</div>
             <div className="col-span-2 text-right">Issuer</div>
@@ -76,19 +77,15 @@ export default function StablecoinsPage() {
                     <div className="text-xs text-gray-600">{coin.symbol}</div>
                   </div>
                 </div>
-
                 <div className="col-span-2 text-right">
                   <span className="text-xs text-gray-300">{coin.issuer}</span>
                 </div>
-
                 <div className="col-span-2 text-right">
                   <span className="text-xs font-medium" style={{ color: '#C9A84C' }}>{coin.peg}</span>
                 </div>
-
                 <div className="col-span-2 text-right">
                   <span className="text-xs text-gray-300">{coin.supply}</span>
                 </div>
-
                 <div className="col-span-3 flex items-center justify-end gap-2">
                   <button
                     onClick={() => openSwap(coin)}
@@ -100,6 +97,58 @@ export default function StablecoinsPage() {
                   <button
                     onClick={() => visitSite(coin.website)}
                     className="text-xs px-3 py-1.5 rounded-lg transition-colors text-gray-500 hover:text-gray-300"
+                    style={{ border: '1px solid rgba(201,168,76,0.15)' }}
+                  >
+                    Visit
+                  </button>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Mobile card view */}
+        <div className="md:hidden flex flex-col gap-3">
+          {stablecoins.map((coin) => {
+            return (
+              <div
+                key={coin.id}
+                className="rounded-2xl p-4"
+                style={{ backgroundColor: 'rgba(201,168,76,0.03)', border: '1px solid rgba(201,168,76,0.15)' }}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
+                      {coin.icon}
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-gray-200">{coin.name}</div>
+                      <div className="text-xs text-gray-600">{coin.symbol}</div>
+                    </div>
+                  </div>
+                  <span className="text-xs font-medium" style={{ color: '#C9A84C' }}>{coin.peg}</span>
+                </div>
+                <div className="flex gap-4 text-xs mb-3">
+                  <div>
+                    <span className="text-gray-600">Issuer </span>
+                    <span className="text-gray-300">{coin.issuer}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">Supply </span>
+                    <span className="text-gray-300">{coin.supply}</span>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => openSwap(coin)}
+                    className="flex-1 text-xs py-2 rounded-lg transition-all"
+                    style={{ backgroundColor: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C' }}
+                  >
+                    Swap → {coin.symbol}
+                  </button>
+                  <button
+                    onClick={() => visitSite(coin.website)}
+                    className="px-3 py-2 text-xs rounded-lg transition-colors text-gray-500 hover:text-gray-300"
                     style={{ border: '1px solid rgba(201,168,76,0.15)' }}
                   >
                     Visit

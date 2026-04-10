@@ -48,7 +48,8 @@ export default function LSTsPage() {
           Top LSTs on Solana
         </div>
 
-        <div className="rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(201,168,76,0.15)' }}>
+        {/* Desktop table view */}
+        <div className="hidden md:block rounded-2xl overflow-hidden" style={{ border: '1px solid rgba(201,168,76,0.15)' }}>
           <div className="grid grid-cols-12 px-4 py-3 text-xs font-medium uppercase tracking-widest" style={{ backgroundColor: 'rgba(201,168,76,0.08)', color: '#C9A84C', borderBottom: '1px solid rgba(201,168,76,0.15)' }}>
             <div className="col-span-4">Token</div>
             <div className="col-span-2 text-right">APY</div>
@@ -76,19 +77,15 @@ export default function LSTsPage() {
                     <div className="text-xs text-gray-600">{lst.symbol}</div>
                   </div>
                 </div>
-
                 <div className="col-span-2 text-right">
                   <span className="text-sm font-medium" style={{ color: '#C9A84C' }}>{lst.apy}</span>
                 </div>
-
                 <div className="col-span-2 text-right">
                   <span className="text-xs text-gray-300">{lst.solStaked}</span>
                 </div>
-
                 <div className="col-span-2 text-right">
                   <span className="text-xs text-gray-300">{lst.tvl}</span>
                 </div>
-
                 <div className="col-span-2 flex items-center justify-end gap-2">
                   <button
                     onClick={() => openSwap(lst)}
@@ -100,6 +97,58 @@ export default function LSTsPage() {
                   <button
                     onClick={() => visitSite(lst.website)}
                     className="text-xs px-3 py-1.5 rounded-lg transition-colors text-gray-500 hover:text-gray-300"
+                    style={{ border: '1px solid rgba(201,168,76,0.15)' }}
+                  >
+                    Visit
+                  </button>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Mobile card view */}
+        <div className="md:hidden flex flex-col gap-3">
+          {lsts.map((lst) => {
+            return (
+              <div
+                key={lst.id}
+                className="rounded-2xl p-4"
+                style={{ backgroundColor: 'rgba(201,168,76,0.03)', border: '1px solid rgba(201,168,76,0.15)' }}
+              >
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
+                      {lst.icon}
+                    </div>
+                    <div>
+                      <div className="text-sm font-medium text-gray-200">{lst.name}</div>
+                      <div className="text-xs text-gray-600">{lst.symbol}</div>
+                    </div>
+                  </div>
+                  <span className="text-sm font-medium" style={{ color: '#C9A84C' }}>{lst.apy}</span>
+                </div>
+                <div className="flex gap-4 text-xs mb-3">
+                  <div>
+                    <span className="text-gray-600">SOL Staked </span>
+                    <span className="text-gray-300">{lst.solStaked}</span>
+                  </div>
+                  <div>
+                    <span className="text-gray-600">TVL </span>
+                    <span className="text-gray-300">{lst.tvl}</span>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => openSwap(lst)}
+                    className="flex-1 text-xs py-2 rounded-lg transition-all"
+                    style={{ backgroundColor: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.3)', color: '#C9A84C' }}
+                  >
+                    Swap → {lst.symbol}
+                  </button>
+                  <button
+                    onClick={() => visitSite(lst.website)}
+                    className="px-3 py-2 text-xs rounded-lg transition-colors text-gray-500 hover:text-gray-300"
                     style={{ border: '1px solid rgba(201,168,76,0.15)' }}
                   >
                     Visit
