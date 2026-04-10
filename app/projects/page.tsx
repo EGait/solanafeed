@@ -92,8 +92,20 @@ export default function ProjectsPage() {
                     style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}
                   >
                     <div className="flex items-center justify-between mb-3">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
-                        {project.icon}
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl overflow-hidden" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
+                        {project.logo ? (
+                          <img
+                            src={project.logo}
+                            alt={project.name}
+                            className="w-full h-full object-cover rounded-xl"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none'
+                              const sibling = e.currentTarget.nextElementSibling as HTMLElement
+                              if (sibling) sibling.style.display = 'block'
+                            }}
+                          />
+                        ) : null}
+                        <span style={{ display: project.logo ? 'none' : 'block' }}>{project.icon}</span>
                       </div>
                       <span className="text-xs px-2 py-0.5 rounded" style={badgeStyles}>
                         {project.badge}
@@ -132,8 +144,20 @@ export default function ProjectsPage() {
                     className="flex items-center gap-4 rounded-xl px-4 py-3 cursor-pointer transition-all hover:scale-[1.01]"
                     style={{ backgroundColor: 'rgba(201,168,76,0.03)', border: '1px solid rgba(201,168,76,0.15)' }}
                   >
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center text-base flex-shrink-0" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
-                      {project.icon}
+                    <div className="w-9 h-9 rounded-lg flex items-center justify-center text-base flex-shrink-0 overflow-hidden" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
+                      {project.logo ? (
+                        <img
+                          src={project.logo}
+                          alt={project.name}
+                          className="w-full h-full object-cover rounded-lg"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none'
+                            const sibling = e.currentTarget.nextElementSibling as HTMLElement
+                            if (sibling) sibling.style.display = 'block'
+                          }}
+                        />
+                      ) : null}
+                      <span style={{ display: project.logo ? 'none' : 'block' }}>{project.icon}</span>
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-0.5">

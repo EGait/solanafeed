@@ -34,28 +34,39 @@ export default function ProjectPage() {
 
       <div className="max-w-3xl mx-auto px-6 md:px-8 py-12">
         <div className="flex items-center justify-between mb-8">
-  <button
-    onClick={() => router.push('/projects')}
-    className="text-xs hover:opacity-80 transition-opacity flex items-center gap-2"
-    style={{ color: '#C9A84C' }}
-  >
-    ← Back to projects
-  </button>
-  <button
-    onClick={() => router.push('/projects')}
-    className="w-8 h-8 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity text-gray-400"
-    style={{ backgroundColor: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.2)' }}
-  >
-    ✕
-  </button>
-</div>
+          <button
+            onClick={() => router.push('/projects')}
+            className="text-xs hover:opacity-80 transition-opacity flex items-center gap-2"
+            style={{ color: '#C9A84C' }}
+          >
+            ← Back to projects
+          </button>
+          <button
+            onClick={() => router.push('/projects')}
+            className="w-8 h-8 flex items-center justify-center rounded-full hover:opacity-80 transition-opacity text-gray-400"
+            style={{ backgroundColor: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.2)' }}
+          >
+            ✕
+          </button>
+        </div>
 
-        {/* Header */}
         <div className="rounded-2xl p-8 mb-6" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.2)' }}>
           <div className="flex items-start justify-between mb-6">
             <div className="flex items-center gap-4">
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
-                {project.icon}
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-3xl overflow-hidden" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
+                {project.logo ? (
+                  <img
+                    src={project.logo}
+                    alt={project.name}
+                    className="w-full h-full object-cover rounded-2xl"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none'
+                      const sibling = e.currentTarget.nextElementSibling as HTMLElement
+                      if (sibling) sibling.style.display = 'block'
+                    }}
+                  />
+                ) : null}
+                <span style={{ display: project.logo ? 'none' : 'block' }}>{project.icon}</span>
               </div>
               <div>
                 <h1 className="text-2xl font-medium text-gray-100">{project.name}</h1>
@@ -82,7 +93,6 @@ export default function ProjectPage() {
             {project.longDescription}
           </p>
 
-          {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
             {project.stats.tvl && (
               <div className="rounded-xl p-3 text-center" style={{ backgroundColor: 'rgba(201,168,76,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}>
@@ -108,7 +118,6 @@ export default function ProjectPage() {
             </div>
           </div>
 
-          {/* Tags */}
           <div className="flex flex-wrap gap-2 mb-6">
             {project.tags.map((tag) => (
               <span key={tag} className="text-xs px-3 py-1 rounded-full" style={{ backgroundColor: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.2)', color: '#C9A84C' }}>
@@ -117,7 +126,6 @@ export default function ProjectPage() {
             ))}
           </div>
 
-          {/* Links */}
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => window.open(project.website, '_blank')}
@@ -156,7 +164,6 @@ export default function ProjectPage() {
           </div>
         </div>
 
-        {/* Products */}
         {project.products && project.products.length > 0 && (
           <div className="mb-8">
             <div className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: '#C9A84C' }}>
@@ -177,7 +184,6 @@ export default function ProjectPage() {
           </div>
         )}
 
-        {/* Related Projects */}
         {relatedProjects.length > 0 && (
           <div>
             <div className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: '#C9A84C' }}>
@@ -192,8 +198,20 @@ export default function ProjectPage() {
                   style={{ backgroundColor: 'rgba(201,168,76,0.03)', border: '1px solid rgba(201,168,76,0.15)' }}
                 >
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-base" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
-                      {related.icon}
+                    <div className="w-8 h-8 rounded-lg flex items-center justify-center text-base overflow-hidden" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
+                      {related.logo ? (
+                        <img
+                          src={related.logo}
+                          alt={related.name}
+                          className="w-full h-full object-cover rounded-lg"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none'
+                            const sibling = e.currentTarget.nextElementSibling as HTMLElement
+                            if (sibling) sibling.style.display = 'block'
+                          }}
+                        />
+                      ) : null}
+                      <span style={{ display: related.logo ? 'none' : 'block' }}>{related.icon}</span>
                     </div>
                     <div className="text-sm font-medium text-gray-200">{related.name}</div>
                   </div>
