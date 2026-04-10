@@ -49,6 +49,5 @@ settings.gradle
 store_icon.png
 twa-manifest.json
 local.properties
-.gradle/
-app/
+.gradle
 gradle/
