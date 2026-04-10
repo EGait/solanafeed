@@ -1,0 +1,4 @@
+#Fri Apr 10 13:47:27 CDT 2026
+base.0=C\:\\Users\\ering\\SolanaFeed\\app\\build\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

@@ -39,3 +39,17 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+# Android / Bubblewrap
+android.keystore
+app-release-signed.apk
+app-release-signed.apk.idsig
+app-release-unsigned-aligned.apk
+app-release-bundle.aab
+.gradle/
+app/build/
+app/src/
+gradle/
+gradlew
+gradlew.bat
+local.properties
+twa-manifest.json
