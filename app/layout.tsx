@@ -4,8 +4,8 @@ import WalletProviderWrapper from './components/WalletProviderWrapper'
 import ServiceWorker from './components/ServiceWorker'
 
 export const metadata: Metadata = {
-  title: 'SolanaFeed — The hub for everything Solana',
-  description: 'Discover top Solana projects, read the latest Solana news, and swap tokens — all in one place. Your go-to Solana ecosystem hub.',
+  title: 'SolanaFeed — Your Daily Hub for Solana News, Projects and Swaps',
+  description: 'SolanaFeed is your daily hub for everything Solana. Discover top projects, read breaking news, compare LSTs and stablecoins, and swap tokens powered by Jupiter — all in one place.',
   manifest: '/manifest.json',
   keywords: ['Solana', 'SOL', 'Solana news', 'Solana projects', 'Solana DeFi', 'token swap', 'LSTs', 'stablecoins', 'Jupiter swap'],
   authors: [{ name: 'SolanaFeed' }],
