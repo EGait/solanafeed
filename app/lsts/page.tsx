@@ -69,8 +69,20 @@ export default function LSTsPage() {
                 }}
               >
                 <div className="col-span-4 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl flex items-center justify-center text-lg flex-shrink-0" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
-                    {lst.icon}
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center text-lg flex-shrink-0 overflow-hidden" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
+                    {lst.logo ? (
+                      <img
+                        src={lst.logo}
+                        alt={lst.name}
+                        className="w-full h-full object-cover rounded-xl"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none'
+                          const sibling = e.currentTarget.nextElementSibling as HTMLElement
+                          if (sibling) sibling.style.display = 'block'
+                        }}
+                      />
+                    ) : null}
+                    <span style={{ display: lst.logo ? 'none' : 'block' }}>{lst.icon}</span>
                   </div>
                   <div>
                     <div className="text-sm font-medium text-gray-200">{lst.name}</div>
@@ -118,8 +130,20 @@ export default function LSTsPage() {
               >
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
-                      {lst.icon}
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl overflow-hidden" style={{ backgroundColor: 'rgba(201,168,76,0.1)' }}>
+                      {lst.logo ? (
+                        <img
+                          src={lst.logo}
+                          alt={lst.name}
+                          className="w-full h-full object-cover rounded-xl"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none'
+                            const sibling = e.currentTarget.nextElementSibling as HTMLElement
+                            if (sibling) sibling.style.display = 'block'
+                          }}
+                        />
+                      ) : null}
+                      <span style={{ display: lst.logo ? 'none' : 'block' }}>{lst.icon}</span>
                     </div>
                     <div>
                       <div className="text-sm font-medium text-gray-200">{lst.name}</div>
