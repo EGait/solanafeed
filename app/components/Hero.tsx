@@ -10,7 +10,7 @@ export default function Hero() {
       <img
         src="/icon.png"
         alt="SolanaFeed"
-        className="w-16 h-16 mx-auto mb-4 object-contain"
+        className="w-12 h-12 mx-auto mb-3 object-contain"
       />
       <div className="inline-block text-xs px-3 py-1 rounded-full mb-4 border" style={{ backgroundColor: 'rgba(201,168,76,0.1)', borderColor: 'rgba(201,168,76,0.3)', color: '#C9A84C' }}>
         Your Solana universe, all in one place
