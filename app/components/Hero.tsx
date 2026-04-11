@@ -24,20 +24,41 @@ export default function Hero() {
       <p className="text-gray-500 text-sm max-w-md mx-auto mb-5 leading-relaxed">
         Top projects, breaking news, and token swaps — all in one place for the Solana ecosystem.
       </p>
-      <div className="flex flex-col sm:flex-row gap-3 justify-center">
+      <div className="flex flex-wrap gap-2 justify-center">
         <button
           onClick={() => router.push('/projects')}
-          className="text-sm px-5 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity"
+          className="text-sm px-4 py-2 rounded-lg font-medium hover:opacity-90 transition-opacity"
           style={{ backgroundColor: '#C9A84C', color: '#0a0a0f' }}
         >
-          Explore Projects
+          Projects
         </button>
         <button
           onClick={() => router.push('/news')}
-          className="text-sm px-5 py-2 rounded-lg hover:opacity-80 transition-opacity border"
+          className="text-sm px-4 py-2 rounded-lg hover:opacity-80 transition-opacity border"
           style={{ borderColor: '#C9A84C', color: '#C9A84C' }}
         >
-          Read Latest News
+          News
+        </button>
+        <button
+          onClick={() => router.push('/lsts')}
+          className="text-sm px-4 py-2 rounded-lg hover:opacity-80 transition-opacity border"
+          style={{ borderColor: '#C9A84C', color: '#C9A84C' }}
+        >
+          LSTs
+        </button>
+        <button
+          onClick={() => router.push('/stablecoins')}
+          className="text-sm px-4 py-2 rounded-lg hover:opacity-80 transition-opacity border"
+          style={{ borderColor: '#C9A84C', color: '#C9A84C' }}
+        >
+          Stablecoins
+        </button>
+        <button
+          onClick={() => router.push('/swap')}
+          className="text-sm px-4 py-2 rounded-lg hover:opacity-80 transition-opacity border"
+          style={{ borderColor: '#C9A84C', color: '#C9A84C' }}
+        >
+          Swap
         </button>
       </div>
     </div>
