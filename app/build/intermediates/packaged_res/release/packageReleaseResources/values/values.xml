@@ -26,7 +26,7 @@
     <string name="fullScopeUrl" translatable="false">https://solanafeed.com/</string>
     <string name="generatorApp" translatable="false">bubblewrap-cli</string>
     <string name="hostName" translatable="false">solanafeed.com</string>
-    <string name="launchUrl" translatable="false">https://solanafeed.comhttps://solanafeed.com</string>
+    <string name="launchUrl" translatable="false">https://solanafeed.com/</string>
     <string name="launcherName" translatable="false">SolanaFeed</string>
     <string name="orientation" translatable="false">portrait</string>
     <string name="providerAuthority" translatable="false">com.solanafeed.app.fileprovider</string>
