@@ -6,7 +6,7 @@ export default function Hero() {
   const router = useRouter()
 
   return (
-    <div className="text-center px-6 py-6 md:py-8 border-b" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
+    <div className="text-center px-6 py-7 md:py-8 border-b" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
       <img
         src="/icon.png"
         alt="SolanaFeed"
