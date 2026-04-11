@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
-import WalletProviderWrapper from './components/WalletProviderWrapper'
 import ServiceWorker from './components/ServiceWorker'
 
 export const metadata: Metadata = {
@@ -69,9 +68,7 @@ export default function RootLayout({
       </head>
       <body>
         <ServiceWorker />
-        <WalletProviderWrapper>
-          {children}
-        </WalletProviderWrapper>
+        {children}
       </body>
     </html>
   )
