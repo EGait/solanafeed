@@ -22,7 +22,7 @@ export default function Hero() {
         </span>
       </h1>
       <p className="text-gray-500 text-sm max-w-md mx-auto mb-5 leading-relaxed">
-        Top projects , breaking news, and token swaps — all in one place for the Solana ecosystem.
+        Top projects, breaking news, and token swaps — all in one place for the Solana ecosystem.
       </p>
       <div className="flex flex-wrap gap-2 justify-center">
         <button
