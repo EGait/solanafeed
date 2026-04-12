@@ -1,17 +1,29 @@
 'use client'
 
-type Props = {
+import { useEffect } from 'react'
+
+type SwapModalProps = {
   isOpen: boolean
   onClose: () => void
   defaultToMint?: string
   defaultToSymbol?: string
 }
 
-export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSymbol }: Props) {
+export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSymbol }: SwapModalProps) {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+    }
+    if (isOpen) {
+      document.addEventListener('keydown', handleKeyDown)
+    }
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isOpen, onClose])
+
   if (!isOpen) return null
 
-  const swapUrl = defaultToSymbol
-    ? `https://jup.ag/swap/SOL-${defaultToSymbol}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
+  const swapUrl = defaultToMint
+    ? `https://jup.ag/swap/SOL-${defaultToMint}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
     : `https://jup.ag/swap/SOL-USDC?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
 
   return (
@@ -20,34 +32,21 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
       onClick={onClose}
     >
       <div
-        className="rounded-2xl p-6 w-full max-w-lg mx-4"
-        style={{ backgroundColor: '#0f0f1a', border: '1px solid rgba(201,168,76,0.3)' }}
-        onClick={e => e.stopPropagation()}
+        className="relative w-full max-w-md mx-4"
+        onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center justify-between mb-4">
-          <div className="text-sm font-medium text-gray-200">
-            Swap SOL → {defaultToSymbol || 'USDC'}
-          </div>
-          <button
-            onClick={onClose}
-            className="text-gray-600 hover:text-gray-400 transition-colors text-xl"
-          >
-            ✕
-          </button>
-        </div>
-
-        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid rgba(201,168,76,0.2)' }}>
-          <iframe
-            src={swapUrl}
-            width="100%"
-            height="500"
-            style={{ border: 'none' }}
-          />
-        </div>
-
-        <div className="text-center text-xs text-gray-600 mt-3">
-          Powered by Jupiter — best prices across all Solana DEXs
-        </div>
+        <button
+          onClick={onClose}
+          className="absolute -top-10 right-0 text-gray-400 hover:text-gray-200 transition-colors text-sm"
+        >
+          ✕ Close
+        </button>
+        <iframe
+          src={swapUrl}
+          width="100%"
+          height="600"
+          style={{ border: 'none', borderRadius: '16px' }}
+        />
       </div>
     </div>
   )
