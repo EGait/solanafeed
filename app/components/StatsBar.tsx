@@ -10,7 +10,9 @@ export default function StatsBar() {
     <div className="grid grid-cols-2 md:flex md:justify-center gap-8 md:gap-16 px-8 py-6 border-b" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
       {stats.map((stat) => (
         <div key={stat.label} className="text-center">
-          <div className="text-xl font-medium gold-text">{stat.value}</div>
+          <div className="text-xl font-medium" style={{ color: '#C9A84C' }}>
+            {stat.value}
+          </div>
           <div className="text-xs text-gray-600 mt-1">{stat.label}</div>
         </div>
       ))}
