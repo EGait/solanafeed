@@ -15,21 +15,21 @@
     "@solana/wallet-adapter-react-ui": "^0.9.39",
     "@solana/wallet-adapter-wallets": "^0.19.38",
     "@solana/web3.js": "^1.98.4",
+    "@tailwindcss/postcss": "^4",
     "autoprefixer": "^10.4.27",
     "axios": "^1.14.0",
     "next": "16.2.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "rss-parser": "^3.13.0"
+    "rss-parser": "^3.13.0",
+    "tailwindcss": "^4"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
-    "tailwindcss": "^4",
     "typescript": "^5"
   }
 }
