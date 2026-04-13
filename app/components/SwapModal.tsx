@@ -10,9 +10,8 @@ type Props = {
 export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSymbol }: Props) {
   if (!isOpen) return null
 
-  const swapUrl = defaultToSymbol
-    ? `https://jup.ag/swap/SOL-${defaultToSymbol}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
-    : `https://jup.ag/swap/SOL-USDC?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
+  const swapTarget = defaultToMint || defaultToSymbol || 'USDC'
+  const swapUrl = `https://jup.ag/swap/SOL-${swapTarget}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
 
   return (
     <div
@@ -37,7 +36,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
         </div>
         <div className="rounded-xl overflow-hidden" style={{ border: '1px solid rgba(201,168,76,0.2)' }}>
           <iframe
-            key={defaultToSymbol}
+            key={swapTarget}
             src={swapUrl}
             width="100%"
             height="500"
