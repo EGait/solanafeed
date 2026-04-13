@@ -1,5 +1,8 @@
 'use client'
 
+// USDC mint address as default
+const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
+
 type Props = {
   isOpen: boolean
   onClose: () => void
@@ -10,9 +13,8 @@ type Props = {
 export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSymbol }: Props) {
   if (!isOpen) return null
 
-  const swapUrl = defaultToMint
-    ? `https://jup.ag/swap/SOL-${defaultToMint}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
-    : `https://jup.ag/swap/SOL-USDC?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
+  const mint = defaultToMint || USDC_MINT
+  const swapUrl = `https://jup.ag/swap/SOL-${mint}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
 
   return (
     <div
