@@ -6,14 +6,12 @@ import { projects } from '../data/projects'
 
 export default function ProjectList() {
   const [modalOpen, setModalOpen] = useState(false)
-  const [selectedMint, setSelectedMint] = useState<string>('')
-  const [selectedSymbol, setSelectedSymbol] = useState<string>('')
+  const [selectedProject, setSelectedProject] = useState<any>(null)
 
   const topProjects = projects.slice(0, 6)
 
   const openSwap = (project: any) => {
-    setSelectedMint(project.mintAddress || '')
-    setSelectedSymbol(project.symbol || project.name)
+    setSelectedProject(project)
     setModalOpen(true)
   }
 
@@ -77,11 +75,10 @@ export default function ProjectList() {
       </div>
 
       <SwapModal
-        key={selectedMint}
         isOpen={modalOpen}
         onClose={() => setModalOpen(false)}
-        defaultToMint={selectedMint}
-        defaultToSymbol={selectedSymbol}
+        defaultToMint={selectedProject?.mintAddress}
+        defaultToSymbol={selectedProject?.symbol}
       />
     </div>
   )

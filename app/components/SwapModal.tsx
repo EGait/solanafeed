@@ -1,6 +1,5 @@
 'use client'
 
-// USDC mint address as default
 const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
 
 type Props = {
@@ -39,6 +38,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
         </div>
         <div className="rounded-xl overflow-hidden" style={{ border: '1px solid rgba(201,168,76,0.2)' }}>
           <iframe
+            key={mint}
             src={swapUrl}
             width="100%"
             height="500"
