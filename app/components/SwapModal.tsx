@@ -1,6 +1,7 @@
 'use client'
 
 const USDC_MINT = 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v'
+const SOL_MINT = 'So11111111111111111111111111111111111111112'
 
 type Props = {
   isOpen: boolean
@@ -13,7 +14,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
   if (!isOpen) return null
 
   const mint = defaultToMint || USDC_MINT
-  const swapUrl = `https://jup.ag/swap/SOL-${mint}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
+  const swapUrl = `https://jup.ag/swap/${SOL_MINT}-${mint}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
 
   return (
     <div
