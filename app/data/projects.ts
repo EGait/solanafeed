@@ -54,7 +54,7 @@ export const projects = [
     },
     category: "DeFi",
     icon: "💎",
-    logo: "https://hylo.so/favicon.ico",
+    logo: "https://www.google.com/s2/favicons?domain=hylo.so&sz=64",
     badge: "Trending",
     badgeType: "hot",
     website: "https://hylo.so",
