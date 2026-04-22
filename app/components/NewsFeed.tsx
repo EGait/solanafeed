@@ -127,13 +127,17 @@ export default function NewsFeed() {
         .sf-hero-body { position: relative; padding: 26px 30px 30px; }
         .sf-hero-title {
           font-family: 'Syne', sans-serif;
-          font-size: clamp(20px, 2.2vw, 28px);
+          font-size: 22px;
           font-weight: 800;
           color: #fff;
-          line-height: 1.2;
-          letter-spacing: -.025em;
+          line-height: 1.25;
+          letter-spacing: -.02em;
           margin: 0 0 12px;
           transition: color .15s ease;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
         }
         .sf-hero-wrap:hover .sf-hero-title { color: #C9A84C; }
         .sf-read-cta {
