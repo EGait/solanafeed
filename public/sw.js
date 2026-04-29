@@ -1,4 +1,4 @@
-const CACHE_NAME = 'solanafeed-v3';
+const CACHE_NAME = 'solanafeed-v4';
 const urlsToCache = [
   '/',
   '/projects',
@@ -34,6 +34,13 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  const url = new URL(event.request.url);
+  
+  // Pass through all external requests — don't intercept
+  if (url.origin !== self.location.origin) {
+    return;
+  }
+
   event.respondWith(
     fetch(event.request).catch(() => {
       return caches.match(event.request);
