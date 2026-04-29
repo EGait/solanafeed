@@ -44,7 +44,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
     } else if (!scriptLoaded) {
       scriptLoaded = true
       const script = document.createElement('script')
-      script.src = 'https://terminal.jup.ag/main-v3.js'
+      script.src = 'https://terminal.jup.ag/main-v4.js'
       script.async = true
       script.onload = initTerminal
       document.body.appendChild(script)

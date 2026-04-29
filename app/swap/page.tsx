@@ -12,7 +12,7 @@ export default function SwapPage() {
     terminalLoaded.current = true
 
     const script = document.createElement('script')
-    script.src = 'https://terminal.jup.ag/main-v3.js'
+    script.src = 'https://terminal.jup.ag/main-v4.js'
     script.async = true
     script.onload = () => {
       window.Jupiter.init({
