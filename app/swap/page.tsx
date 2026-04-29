@@ -15,7 +15,7 @@ export default function SwapPage() {
       displayMode: 'integrated',
       integratedTargetId: 'jupiter-terminal',
       formProps: {
-        referralAccount: 'F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG',
+        referralAccount: '8gVQuCpkrmFTZH3ymTRUKV4meWX8gCpvZ5MmpvEzhpqj',
         referralFee: 50,
       },
     })

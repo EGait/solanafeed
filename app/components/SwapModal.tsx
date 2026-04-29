@@ -19,7 +19,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
       formProps: {
         initialInputMint: 'So11111111111111111111111111111111111111112',
         initialOutputMint: defaultToMint || 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
-        referralAccount: 'F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG',
+        referralAccount: '8gVQuCpkrmFTZH3ymTRUKV4meWX8gCpvZ5MmpvEzhpqj',
         referralFee: 50,
       },
     })
