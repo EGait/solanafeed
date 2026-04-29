@@ -1,9 +1,39 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 export default function SwapPage() {
+  const terminalLoaded = useRef(false)
+
+  useEffect(() => {
+    if (terminalLoaded.current) return
+    terminalLoaded.current = true
+
+    const script = document.createElement('script')
+    script.src = 'https://terminal.jup.ag/main-v3.js'
+    script.async = true
+    script.onload = () => {
+      window.Jupiter.init({
+        displayMode: 'integrated',
+        integratedTargetId: 'jupiter-terminal',
+        endpoint: process.env.NEXT_PUBLIC_HELIUS_RPC!,
+        strictTokenList: false,
+        defaultExplorer: 'Solana Explorer',
+        platformFeeAndAccounts: {
+          referralAccount: 'F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG',
+          feeBps: 50,
+        },
+      })
+    }
+    document.body.appendChild(script)
+
+    return () => {
+      if (window.Jupiter?.close) window.Jupiter.close()
+    }
+  }, [])
+
   return (
     <main className="bg-[#0a0a0f] min-h-screen text-gray-100">
       <Navbar />
@@ -22,14 +52,15 @@ export default function SwapPage() {
       </div>
 
       <div className="flex justify-center items-start py-8 px-4">
-        <iframe
-          src="https://jup.ag/swap/SOL-USDC?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50"
-          width="100%"
-          height="700"
+        <div
+          id="jupiter-terminal"
           style={{
+            width: '100%',
             maxWidth: '480px',
-            border: 'none',
+            minHeight: '700px',
+            height: '700px',
             borderRadius: '16px',
+            overflow: 'visible',
           }}
         />
       </div>

@@ -1,5 +1,8 @@
 'use client'
 
+import { useEffect } from 'react'
+import { useWallet } from '@solana/wallet-adapter-react'
+
 type Props = {
   isOpen: boolean
   onClose: () => void
@@ -7,12 +10,58 @@ type Props = {
   defaultToSymbol?: string
 }
 
-export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSymbol }: Props) {
-  if (!isOpen) return null
+let scriptLoaded = false
 
-  const swapUrl = defaultToSymbol
-    ? `https://jup.ag/swap/SOL-${defaultToSymbol}?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
-    : `https://jup.ag/swap/SOL-USDC?referrer=F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG&feeBps=50`
+export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSymbol }: Props) {
+  const passthroughWalletContextState = useWallet()
+
+  useEffect(() => {
+    if (!isOpen) return
+
+    const initTerminal = () => {
+      window.Jupiter.init({
+        displayMode: 'integrated',
+        integratedTargetId: 'jupiter-swap-modal',
+        endpoint: process.env.NEXT_PUBLIC_HELIUS_RPC!,
+        strictTokenList: false,
+        enableWalletPassthrough: true,
+        formProps: {
+          initialInputMint: 'So11111111111111111111111111111111111111112',
+          ...(defaultToMint
+            ? { initialOutputMint: defaultToMint }
+            : { initialOutputMint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v' }
+          ),
+        },
+        platformFeeAndAccounts: {
+          referralAccount: 'F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG',
+          feeBps: 50,
+        },
+      })
+    }
+
+    if (scriptLoaded && window.Jupiter) {
+      initTerminal()
+    } else if (!scriptLoaded) {
+      scriptLoaded = true
+      const script = document.createElement('script')
+      script.src = 'https://terminal.jup.ag/main-v3.js'
+      script.async = true
+      script.onload = initTerminal
+      document.body.appendChild(script)
+    }
+
+    return () => {
+      if (window.Jupiter?.close) window.Jupiter.close()
+    }
+  }, [isOpen, defaultToMint])
+
+  // Sync wallet state with Jupiter Terminal
+  useEffect(() => {
+    if (!window.Jupiter?.syncProps) return
+    window.Jupiter.syncProps({ passthroughWalletContextState })
+  }, [passthroughWalletContextState])
+
+  if (!isOpen) return null
 
   return (
     <div
@@ -35,15 +84,11 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
             ✕
           </button>
         </div>
-        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid rgba(201,168,76,0.2)' }}>
-          <iframe
-            key={defaultToSymbol}
-            src={swapUrl}
-            width="100%"
-            height="500"
-            style={{ border: 'none' }}
-          />
+
+        <div className="rounded-xl" style={{ border: '1px solid rgba(201,168,76,0.2)', overflow: 'visible' }}>
+          <div id="jupiter-swap-modal" style={{ minHeight: '500px', height: '500px', overflow: 'visible' }} />
         </div>
+
         <div className="text-center text-xs text-gray-600 mt-3">
           Powered by Jupiter — best prices across all Solana DEXs
         </div>

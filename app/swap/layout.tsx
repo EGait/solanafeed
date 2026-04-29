@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import WalletProviderWrapper from '../components/WalletProviderWrapper'
 
 export const metadata: Metadata = {
   title: 'Swap Solana Tokens — SolanaFeed',
@@ -6,5 +7,5 @@ export const metadata: Metadata = {
 }
 
 export default function SwapLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+  return <WalletProviderWrapper>{children}</WalletProviderWrapper>
 }
