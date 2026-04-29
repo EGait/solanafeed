@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useWallet } from '@solana/wallet-adapter-react'
 
 type Props = {
   isOpen: boolean
@@ -13,8 +12,6 @@ type Props = {
 let scriptLoaded = false
 
 export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSymbol }: Props) {
-  const passthroughWalletContextState = useWallet()
-
   useEffect(() => {
     if (!isOpen) return
 
@@ -24,7 +21,6 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
         integratedTargetId: 'jupiter-swap-modal',
         endpoint: process.env.NEXT_PUBLIC_HELIUS_RPC!,
         strictTokenList: false,
-        enableWalletPassthrough: true,
         formProps: {
           initialInputMint: 'So11111111111111111111111111111111111111112',
           ...(defaultToMint
@@ -54,12 +50,6 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
       if (window.Jupiter?.close) window.Jupiter.close()
     }
   }, [isOpen, defaultToMint])
-
-  // Sync wallet state with Jupiter Terminal
-  useEffect(() => {
-    if (!window.Jupiter?.syncProps) return
-    window.Jupiter.syncProps({ passthroughWalletContextState })
-  }, [passthroughWalletContextState])
 
   if (!isOpen) return null
 
