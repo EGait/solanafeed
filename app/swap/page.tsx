@@ -5,29 +5,20 @@ import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 export default function SwapPage() {
-  const terminalLoaded = useRef(false)
+  const initialized = useRef(false)
 
   useEffect(() => {
-    if (terminalLoaded.current) return
-    terminalLoaded.current = true
+    if (initialized.current || !window.Jupiter) return
+    initialized.current = true
 
-    const script = document.createElement('script')
-    script.src = 'https://terminal.jup.ag/main-v4.js'
-    script.async = true
-    script.onload = () => {
-      window.Jupiter.init({
-        displayMode: 'integrated',
-        integratedTargetId: 'jupiter-terminal',
-        endpoint: process.env.NEXT_PUBLIC_HELIUS_RPC!,
-        strictTokenList: false,
-        defaultExplorer: 'Solana Explorer',
-      })
-    }
-    document.body.appendChild(script)
-
-    return () => {
-      if (window.Jupiter?.close) window.Jupiter.close()
-    }
+    window.Jupiter.init({
+      displayMode: 'integrated',
+      integratedTargetId: 'jupiter-terminal',
+      formProps: {
+        referralAccount: 'F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG',
+        referralFee: 50,
+      },
+    })
   }, [])
 
   return (

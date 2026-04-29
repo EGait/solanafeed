@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import Script from 'next/script'
 import './globals.css'
 import WalletProviderWrapper from './components/WalletProviderWrapper'
 import ServiceWorker from './components/ServiceWorker'
@@ -66,6 +67,13 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        {/* Jupiter Plugin */}
+        <Script
+          src="https://plugin.jup.ag/plugin-v1.js"
+          strategy="beforeInteractive"
+          data-preload
+          defer
+        />
         {/* Google Analytics */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y3EM8BMSM8"></script>
         <script

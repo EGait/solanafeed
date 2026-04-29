@@ -9,38 +9,20 @@ type Props = {
   defaultToSymbol?: string
 }
 
-let scriptLoaded = false
-
 export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSymbol }: Props) {
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen || !window.Jupiter) return
 
-    const initTerminal = () => {
-      window.Jupiter.init({
-        displayMode: 'integrated',
-        integratedTargetId: 'jupiter-swap-modal',
-        endpoint: process.env.NEXT_PUBLIC_HELIUS_RPC!,
-        strictTokenList: false,
-        formProps: {
-          initialInputMint: 'So11111111111111111111111111111111111111112',
-          ...(defaultToMint
-            ? { initialOutputMint: defaultToMint }
-            : { initialOutputMint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v' }
-          ),
-        },
-      })
-    }
-
-    if (scriptLoaded && window.Jupiter) {
-      initTerminal()
-    } else if (!scriptLoaded) {
-      scriptLoaded = true
-      const script = document.createElement('script')
-      script.src = 'https://terminal.jup.ag/main-v4.js'
-      script.async = true
-      script.onload = initTerminal
-      document.body.appendChild(script)
-    }
+    window.Jupiter.init({
+      displayMode: 'integrated',
+      integratedTargetId: 'jupiter-swap-modal',
+      formProps: {
+        initialInputMint: 'So11111111111111111111111111111111111111112',
+        initialOutputMint: defaultToMint || 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
+        referralAccount: 'F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG',
+        referralFee: 50,
+      },
+    })
 
     return () => {
       if (window.Jupiter?.close) window.Jupiter.close()
@@ -65,7 +47,7 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
           </div>
           <button
             onClick={onClose}
-            className="text-gray-600 hover:text-gray-400 transition-colors text-xl"
+            className="text-gray-600 hover:text-gray.400 transition-colors text-xl"
           >
             ✕
           </button>
