@@ -28,10 +28,6 @@ export default function SwapModal({ isOpen, onClose, defaultToMint, defaultToSym
             : { initialOutputMint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v' }
           ),
         },
-        platformFeeAndAccounts: {
-          referralAccount: 'F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG',
-          feeBps: 50,
-        },
       })
     }
 

@@ -21,10 +21,6 @@ export default function SwapPage() {
         endpoint: process.env.NEXT_PUBLIC_HELIUS_RPC!,
         strictTokenList: false,
         defaultExplorer: 'Solana Explorer',
-        platformFeeAndAccounts: {
-          referralAccount: 'F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG',
-          feeBps: 50,
-        },
       })
     }
     document.body.appendChild(script)
