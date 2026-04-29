@@ -1,11 +1,13 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useWallet } from '@solana/wallet-adapter-react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
 export default function SwapPage() {
   const terminalLoaded = useRef(false)
+  const passthroughWalletContextState = useWallet()
 
   useEffect(() => {
     if (terminalLoaded.current) return
@@ -20,6 +22,7 @@ export default function SwapPage() {
         integratedTargetId: 'jupiter-terminal',
         endpoint: process.env.NEXT_PUBLIC_HELIUS_RPC!,
         strictTokenList: false,
+        enableWalletPassthrough: true,
         defaultExplorer: 'Solana Explorer',
         platformFeeAndAccounts: {
           referralAccount: 'F7pkMtisKPWKJMXvrRcHaXUfChykA1Ry5xYXT6XtFcSG',
@@ -33,6 +36,12 @@ export default function SwapPage() {
       if (window.Jupiter?.close) window.Jupiter.close()
     }
   }, [])
+
+  // Sync wallet state with Jupiter Terminal
+  useEffect(() => {
+    if (!window.Jupiter?.syncProps) return
+    window.Jupiter.syncProps({ passthroughWalletContextState })
+  }, [passthroughWalletContextState])
 
   return (
     <main className="bg-[#0a0a0f] min-h-screen text-gray-100">
