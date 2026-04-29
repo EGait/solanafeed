@@ -7,13 +7,13 @@ export const metadata = {
   openGraph: {
     title: 'The Liminals: How One Trader Turned His Biggest Loss Into His Greatest Build',
     description: "For DegenNFT_G, the journey through Web3 wasn't just about flipping assets. After losing everything, a conversation with his son changed everything. Out of that came The Liminals.",
-    images: ['/lim full.jpg'],
+    images: ['/limfull.jpg'],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'The Liminals: How One Trader Turned His Biggest Loss Into His Greatest Build',
     description: "For DegenNFT_G, the journey through Web3 wasn't just about flipping assets. After losing everything, a conversation with his son changed everything. Out of that came The Liminals.",
-    images: ['/lim full.jpg'],
+    images: ['/limfull.jpg'],
   },
 }
 
@@ -45,7 +45,7 @@ export default function LiminalsArticle() {
 
         <div className="rounded-2xl overflow-hidden mb-10" style={{ border: '1px solid rgba(201,168,76,0.2)' }}>
           <img
-            src="/lim full.jpg"
+            src="/limfull.jpg"
             alt="The Liminals"
             className="w-full object-contain"
           />
