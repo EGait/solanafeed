@@ -10,7 +10,12 @@ import {
   SolflareWalletAdapter,
   CoinbaseWalletAdapter,
 } from '@solana/wallet-adapter-wallets'
-import { clusterApiUrl } from '@solana/web3.js'
+import {
+  createDefaultAddressSelector,
+  createDefaultAuthorizationResultCache,
+  createDefaultWalletNotFoundHandler,
+  SolanaMobileWalletAdapter,
+} from '@solana-mobile/wallet-adapter-mobile'
 
 type Props = {
   children: React.ReactNode
@@ -18,19 +23,29 @@ type Props = {
 
 export default function AppWalletProvider({ children }: Props) {
   const network = WalletAdapterNetwork.Mainnet
-  const endpoint = useMemo(() => clusterApiUrl(network), [network])
 
   const wallets = useMemo(
     () => [
+      new SolanaMobileWalletAdapter({
+        addressSelector: createDefaultAddressSelector(),
+        appIdentity: {
+          name: 'SolanaFeed',
+          uri: 'https://solanafeed.com',
+          icon: '/favicon.ico',
+        },
+        authorizationResultCache: createDefaultAuthorizationResultCache(),
+        cluster: WalletAdapterNetwork.Mainnet,
+        onWalletNotFound: createDefaultWalletNotFoundHandler(),
+      }),
       new PhantomWalletAdapter(),
       new SolflareWalletAdapter(),
       new CoinbaseWalletAdapter(),
     ],
-    [network]
+    []
   )
 
   return (
-    <ConnectionProvider endpoint={endpoint}>
+    <ConnectionProvider endpoint={process.env.NEXT_PUBLIC_HELIUS_RPC!}>
       <WalletProvider wallets={wallets} autoConnect>
         <WalletModalProvider>
           {children}
