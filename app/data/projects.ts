@@ -205,7 +205,7 @@ export const projects = [
     tvl: null,
     featured: true,
     symbol: "SPYx",
-    mintAddress: "EPjFWdd5Au1v1pJLa8k7VNe9gG2rZ9x0h8axVLPGd8N",
+    mintAddress: "XsoCS1TfEyfFhfvj8EtZ528L3CaKBDBRqRapnBbDF2W",
     founded: "2015",
     chain: "Solana",
     tags: ["RWA", "NFT", "Marketplace"],
