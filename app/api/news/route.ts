@@ -5,7 +5,7 @@ const parser = new Parser()
 
 export async function GET() {
   try {
-    const feed = await parser.parseURL('https://cointelegraph.com/rss/tag/altcoin')
+    const feed = await parser.parseURL('https://cointelegraph.com/rss')
     const articles = feed.items.slice(0, 20).map((item) => ({
       title: item.title || '',
       link: item.link || '',
