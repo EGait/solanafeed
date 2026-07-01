@@ -1,24 +1,35 @@
-'use client'
-
 import Navbar from '../../components/Navbar'
 import Footer from '../../components/Footer'
-import { useRouter } from 'next/navigation'
+
+export const metadata = {
+  title: "Magic Eden's $ME Lawsuit: Broken Promises or Bad Timing?",
+  description: "Magic Eden is facing a federal class action over its $ME token, with plaintiffs alleging misleading marketing under New York consumer protection law. We break down the claims and the counter case.",
+  openGraph: {
+    title: "Magic Eden's $ME Lawsuit: Broken Promises or Bad Timing?",
+    description: "Magic Eden is facing a federal class action over its $ME token, with plaintiffs alleging misleading marketing under New York consumer protection law. We break down the claims and the counter case.",
+    images: ['/magic-eden-lawsuit.jpg'],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Magic Eden's $ME Lawsuit: Broken Promises or Bad Timing?",
+    description: "Magic Eden is facing a federal class action over its $ME token, with plaintiffs alleging misleading marketing under New York consumer protection law. We break down the claims and the counter case.",
+    images: ['/magic-eden-lawsuit.jpg'],
+  },
+}
 
 export default function MagicEdenLawsuitArticle() {
-  const router = useRouter()
-
   return (
     <main className="bg-[#0a0a0f] min-h-screen text-gray-100">
       <Navbar />
 
       <div className="max-w-2xl mx-auto px-6 md:px-8 py-12">
-        <button
-          onClick={() => router.push('/news')}
+        <a
+          href="/news"
           className="text-xs mb-8 hover:opacity-80 transition-opacity flex items-center gap-2"
           style={{ color: '#C9A84C' }}
         >
           ← Back to news
-        </button>
+        </a>
 
         <div className="text-xs font-medium uppercase tracking-widest mb-4" style={{ color: '#C9A84C' }}>
           SolanaFeed
@@ -32,13 +43,21 @@ export default function MagicEdenLawsuitArticle() {
           July 1, 2026 · 6 min read
         </div>
 
+        <div className="rounded-2xl overflow-hidden mb-10" style={{ border: '1px solid rgba(201,168,76,0.2)' }}>
+          <img
+            src="/magic-eden-lawsuit.jpg"
+            alt="Magic Eden $ME lawsuit"
+            className="w-full object-contain"
+          />
+        </div>
+
         <div className="prose prose-invert max-w-none">
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
             Magic Eden built its name as one of crypto's most credible NFT marketplaces, a platform that survived the 2022 downturn, expanded across chains, and positioned itself as the grown up alternative to the sketchier corners of the space. Now it's facing a federal class action that asks a blunt question: did the company mislead buyers about what the $ME token would actually do, or is it just the latest crypto project to get caught in a brutal market cycle?
           </p>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
-            The answer, as usual, sits somewhere in the gray area the lawsuit is designed to force into the open.
+            The answer, as usual, sits somewhere in the gray zone the lawsuit is designed to force into the open.
           </p>
 
           <h2 className="text-lg font-medium text-gray-200 mb-3 mt-8">
