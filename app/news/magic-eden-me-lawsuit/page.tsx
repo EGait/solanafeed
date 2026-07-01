@@ -38,7 +38,7 @@ export default function MagicEdenLawsuitArticle() {
           </p>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
-            The answer, as usual, sits somewhere in the gray zone the lawsuit is designed to force into the open.
+            The answer, as usual, sits somewhere in the gray area the lawsuit is designed to force into the open.
           </p>
 
           <h2 className="text-lg font-medium text-gray-200 mb-3 mt-8">
