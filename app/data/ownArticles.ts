@@ -1,5 +1,13 @@
 export const ownArticles = [
   {
+    title: "Magic Eden's $ME Lawsuit: Broken Promises or Bad Timing?",
+    link: "/news/magic-eden-me-lawsuit",
+    date: "2026-07-01",
+    summary: "Magic Eden is facing a federal class action over its $ME token, with plaintiffs alleging the company's marketing promised features, governance, and rewards that arrived late, fell short, or never launched. The suit skips securities claims entirely and leans on New York consumer protection law instead. We break down what's actually being alleged, and why the case could matter far beyond Magic Eden.",
+    image: "/magic-eden-lawsuit.jpg",
+    own: true,
+  },
+  {
     title: "The Liminals: How One Trader Turned His Biggest Loss Into His Greatest Build",
     link: "/news/behind-the-traders-fresh2010",
     date: "2026-04-29",
