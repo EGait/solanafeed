@@ -1,5 +1,21 @@
 export const ownArticles = [
   {
+    title: "Jupiter ($JUP) Deep Dive: A $150M Revenue Superapp Trading Like an Afterthought",
+    link: "/news/jup",
+    date: "2026-07-06",
+    summary: "Jupiter is no longer just a swap aggregator — it's a full-stack DeFi superapp spanning perps, lending, prediction markets via Kalshi and Polymarket, the JupUSD stablecoin, global payments, and the Giant Unified Market (GUM) bringing stocks and RWAs to Solana. With ~$1T in annual volume, ~$150M in protocol revenue, and its first-ever outside investment from ParaFi, the fundamentals are elite. So why is JUP still 88% below its all-time high? We break down the full product suite, the tokenomics, the dilution overhang, and what could finally close the gap between the protocol and the token.",
+    image: "/jup-deepdive.jpg",
+    own: true,
+  },
+  {
+    title: "Meteora ($MET) Deep Dive: Strong Tech, Collapsed Volume, and a Lawsuit in the Room",
+    link: "/news/met",
+    date: "2026-07-06",
+    summary: "Eight months after one of the boldest token launches in crypto — 48% of supply unlocked on day one — MET trades 75% below its highs. Meteora's DLMM tech is best-in-class and fee revenue is holding up remarkably well, but the protocol's memecoin-driven volume collapsed over 90% in the mid-2026 slowdown, and Meteora itself is a named defendant in the LIBRA/MELANIA class-action lawsuit. We dig into the tokenomics, the fee-vs-volume tension, the legal overhang, and what a recovery would actually require.",
+    image: "/met-deepdive.jpg",
+    own: true,
+  },
+  {
     title: "Magic Eden's $ME Lawsuit: Broken Promises or Bad Timing?",
     link: "/news/magic-eden-me-lawsuit",
     date: "2026-07-01",
