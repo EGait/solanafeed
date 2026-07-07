@@ -43,7 +43,7 @@ export default function JupiterDDArticle() {
 
         <div className="prose prose-invert max-w-none">
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
-            Jupiter is no longer just a swap aggregator. Over the past year it has quietly become the closest thing DeFi has to a full-stack financial superapp — perps, lending, prediction markets, a native stablecoin, payments, and an initiative to put stocks and forex on Solana. The protocol&apos;s numbers are elite. The token&apos;s chart is not. This deep dive looks at both sides.
+            Jupiter is no longer just a swap aggregator. Over the past year it has quietly become the closest thing DeFi has to a full-stack financial superapp: perps, lending, prediction markets, a native stablecoin, payments, and an initiative to put stocks and forex on Solana. The protocol&apos;s numbers are elite. The token&apos;s chart is not. This deep dive looks at both sides.
           </p>
 
           <h2 className="text-lg font-medium text-gray-200 mb-3 mt-8">
@@ -73,15 +73,15 @@ export default function JupiterDDArticle() {
           </p>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-4">
-            <span style={{ color: '#C9A84C' }}>📈 Perps</span> — Up to 100x leverage against the JLP liquidity pool, ranking top-10 among perp DEXs, with Solana perps volume reportedly growing faster than Hyperliquid year over year. Worth knowing: over 80% of JLP supply sits in about 10 wallets, and the April 2026 Drift exploit drained ~41.7M JLP — Jupiter says JLP stayed fully backed, but concentration is real.
+            <span style={{ color: '#C9A84C' }}>📈 Perps</span> — Up to 100x leverage against the JLP liquidity pool, ranking top-10 among perp DEXs. Solana perps volume is reportedly growing faster than Hyperliquid year over year. Worth knowing: over 80% of JLP supply sits in about 10 wallets, and the April 2026 Drift exploit drained ~41.7M JLP. Jupiter says JLP stayed fully backed, but the concentration is real.
           </p>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-4">
-            <span style={{ color: '#C9A84C' }}>🏦 Lending</span> — Jupiter Lend (built with Fluid) hit $1B supplied within eight days of launch, the fastest-growing protocol in Solana history, with LTVs up to 95%. Jupiter Offerbook adds P2P lending against any on-chain asset — including RWAs — with no price-based liquidations. Caveat: early growth was incentive-fueled.
+            <span style={{ color: '#C9A84C' }}>🏦 Lending</span> — Jupiter Lend (built with Fluid) hit $1B supplied within eight days of launch, the fastest-growing protocol in Solana history, with LTVs up to 95%. Jupiter Offerbook adds P2P lending against any on-chain asset, including RWAs, with no price-based liquidations. Caveat: early growth was incentive-fueled.
           </p>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-4">
-            <span style={{ color: '#C9A84C' }}>🔮 Prediction markets</span> — A three-layer play: a Kalshi partnership (October 2025), a Polymarket integration (February 2026) making Jupiter the only Polymarket venue on Solana, and the Jupiter Forecast beta (June 2026) with fast-cycle markets like 15-minute Bitcoin price bets, settled in JupUSD. Note the API is geo-restricted from US and South Korean IPs — a reminder of the regulatory sensitivity here.
+            <span style={{ color: '#C9A84C' }}>🔮 Prediction markets</span> — A three-layer play. A Kalshi partnership (October 2025), a Polymarket integration (February 2026) making Jupiter the only Polymarket venue on Solana, and the Jupiter Forecast beta (June 2026) with fast-cycle markets like 15-minute Bitcoin price bets, settled in JupUSD. Note that the API is geo-restricted from US and South Korean IPs, a reminder of the regulatory sensitivity here.
           </p>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-4">
@@ -89,7 +89,7 @@ export default function JupiterDDArticle() {
           </p>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-4">
-            <span style={{ color: '#C9A84C' }}>🌐 GUM — the Giant Unified Market</span> — Jupiter&apos;s most ambitious bet: one atomic market indexing memecoins, tokenized stocks, forex, and RWAs on Solana, backed by a partner alliance including Wintermute and DWF Labs, with tokenized equities going live via Securitize and Jump Trading. The Unified Market API entered private beta in early 2026. Critically for holders, <span style={{ color: '#C9A84C' }}>GUM is powered by the JUP token</span> — and anticipation of the beta has already driven double-digit JUP rallies.
+            <span style={{ color: '#C9A84C' }}>🌐 GUM, the Giant Unified Market</span> — Jupiter&apos;s most ambitious bet: one atomic market indexing memecoins, tokenized stocks, forex, and RWAs on Solana, backed by a partner alliance including Wintermute and DWF Labs, with tokenized equities going live via Securitize and Jump Trading. The Unified Market API entered private beta in early 2026. Critically for holders, <span style={{ color: '#C9A84C' }}>GUM is powered by the JUP token</span>, and anticipation of the beta has already driven double-digit JUP rallies.
           </p>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
@@ -101,7 +101,7 @@ export default function JupiterDDArticle() {
           </h2>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
-            For two years, dilution was the JUP bear case — then governance killed it. In February 2026, the <span style={{ color: '#C9A84C' }}>&quot;Jupiter Goes Green&quot; proposal passed with 75% approval, cutting net JUP emissions to zero</span>. The Jupuary airdrop was postponed indefinitely, with its 700M JUP returned to the community multisig (the eligibility snapshot preserved for a possible future distribution). Team unlocks were converted into claims against Jupiter&apos;s balance sheet instead of tokens hitting the market, and Mercurial stakeholder vesting was accelerated with Jupiter buying back an equivalent amount to absorb the sell pressure. The final unlock landed on February 25, 2026 — after that, nothing. Stacked on the earlier 30% supply burn (10B → 7B) and the Litterbox burns, JUP went from one of DeFi&apos;s heaviest emission schedules to effectively zero net new supply in the span of a single governance vote.
+            For two years, dilution was the JUP bear case. Then governance killed it. In February 2026, the <span style={{ color: '#C9A84C' }}>&quot;Jupiter Goes Green&quot; proposal passed with 75% approval, cutting net JUP emissions to zero</span>. The Jupuary airdrop was postponed indefinitely, with its 700M JUP returned to the community multisig and the eligibility snapshot preserved for a possible future distribution. Team unlocks were converted into claims against Jupiter&apos;s balance sheet instead of tokens hitting the market, and Mercurial stakeholder vesting was accelerated with Jupiter buying back an equivalent amount to absorb the sell pressure. The final unlock landed on February 25, 2026. After that, nothing. Stacked on the earlier 30% supply burn (10B to 7B) and the Litterbox burns, JUP went from one of DeFi&apos;s heaviest emission schedules to effectively zero net new supply in the span of a single governance vote.
           </p>
 
           <h2 className="text-lg font-medium text-gray-200 mb-3 mt-8">
@@ -109,7 +109,7 @@ export default function JupiterDDArticle() {
           </h2>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
-            Jupiter processed roughly $1 trillion in trading volume over the past year, generates annualized fees near $650M and protocol revenue around $150M, holds $2.4B+ in TVL, and in February 2026 took its first-ever outside investment — $35M from ParaFi Capital — after years of being bootstrapped and profitable. At a ~$795M market cap, that is roughly <span style={{ color: '#C9A84C' }}>5x revenue for one of the top-15 revenue protocols in all of crypto</span>. Yet JUP sits ~88% below its 2024 ATH of $2.00 and printed its all-time low earlier this year. The market is still pricing JUP off its old emission-heavy reputation and weak historical value capture — but the dilution half of that story ended in February. What remains unresolved is value accrual: how much of that $150M actually reaches tokenholders.
+            Jupiter processed roughly $1 trillion in trading volume over the past year, generates annualized fees near $650M and protocol revenue around $150M, holds $2.4B+ in TVL, and in February 2026 took its first-ever outside investment of $35M from ParaFi Capital after years of being bootstrapped and profitable. At a ~$795M market cap, that is roughly <span style={{ color: '#C9A84C' }}>5x revenue for one of the top-15 revenue protocols in all of crypto</span>. Yet JUP sits ~88% below its 2024 ATH of $2.00 and printed its all-time low earlier this year. The market is still pricing JUP off its old emission-heavy reputation and weak historical value capture, but the dilution half of that story ended in February. What remains unresolved is value accrual: how much of that $150M actually reaches tokenholders.
           </p>
 
           <h2 className="text-lg font-medium text-gray-200 mb-3 mt-8">
@@ -117,7 +117,7 @@ export default function JupiterDDArticle() {
           </h2>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
-            SOL trades near $80, down ~72% from its January 2025 high near $295. JUP&apos;s ~88% drawdown means it has underperformed its own chain across the cycle — a persistent frustration in the community. The counterpoint: in recent months JUP has behaved like a high-beta recovery trade, with sharp outperformance on rallies driven by GUM anticipation, the zero-emissions vote, and rotation into Solana majors.
+            SOL trades near $80, down ~72% from its January 2025 high near $295. JUP&apos;s ~88% drawdown means it has underperformed its own chain across the cycle, a persistent frustration in the community. The counterpoint: in recent months JUP has behaved like a high-beta recovery trade, with sharp outperformance on rallies driven by GUM anticipation, the zero-emissions vote, and rotation into Solana majors.
           </p>
 
           <h2 className="text-lg font-medium text-gray-200 mb-3 mt-8">
@@ -125,11 +125,11 @@ export default function JupiterDDArticle() {
           </h2>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-4">
-            <span style={{ color: '#C9A84C' }}>Bull:</span> Near-monopoly aggregation position, ~$150M in real revenue at a sub-$1B cap, relentless product velocity, net emissions cut to zero with unlocks fully concluded, and institutional validation from ParaFi, Securitize, Jump, Bitwise, and Ethena. GUM gives JUP a demand driver it never had — and for the first time, no supply headwind working against it.
+            <span style={{ color: '#C9A84C' }}>Bull:</span> Near-monopoly aggregation position, ~$150M in real revenue at a sub-$1B cap, relentless product velocity, net emissions cut to zero with unlocks fully concluded, and institutional validation from ParaFi, Securitize, Jump, Bitwise, and Ethena. GUM gives JUP a demand driver it never had, and for the first time there is no supply headwind working against it.
           </p>
 
           <p className="text-gray-400 text-sm leading-relaxed mb-6">
-            <span className="text-gray-200">Bear:</span> The 700M postponed-Jupuary tokens still sit in the community multisig — a latent overhang that a future DAO vote could burn, hold, or release back onto the market. Add three years of evidence that revenue has not translated into token value, expanding regulatory surface across prediction markets, RWAs, and payments, full dependence on Solana, and execution risk from an extremely broad product scope. Zero emissions removes a headwind — it does not by itself create demand.
+            <span className="text-gray-200">Bear:</span> The 700M postponed-Jupuary tokens still sit in the community multisig, a latent overhang that a future DAO vote could burn, hold, or release back onto the market. Add three years of evidence that revenue has not translated into token value, expanding regulatory surface across prediction markets, RWAs, and payments, full dependence on Solana, and execution risk from an extremely broad product scope. Zero emissions removes a headwind. It does not by itself create demand.
           </p>
 
           <p className="text-gray-400 text-sm leading-relaxed">
