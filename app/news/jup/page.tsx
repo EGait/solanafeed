@@ -38,7 +38,7 @@ export default function JupiterDDArticle() {
         </h1>
 
         <div className="text-xs text-gray-600 mb-8">
-          July 6, 2026 · 9 min read
+          July 6, 2026 · 9 min read · Written by SolanaFeed
         </div>
 
         <div className="prose prose-invert max-w-none">
