@@ -54,11 +54,25 @@ export default function Hero() {
           Stablecoins
         </button>
         <button
+          onClick={() => router.push('/rwas')}
+          className="text-sm md:text-base px-4 py-2 md:px-6 md:py-2.5 rounded-lg hover:opacity-80 transition-opacity border"
+          style={{ borderColor: '#C9A84C', color: '#C9A84C' }}
+        >
+          RWAs
+        </button>
+        <button
           onClick={() => router.push('/swap')}
           className="text-sm md:text-base px-4 py-2 md:px-6 md:py-2.5 rounded-lg hover:opacity-80 transition-opacity border"
           style={{ borderColor: '#C9A84C', color: '#C9A84C' }}
         >
           Swap
+        </button>
+        <button
+          onClick={() => router.push('/learn')}
+          className="text-sm md:text-base px-4 py-2 md:px-6 md:py-2.5 rounded-lg hover:opacity-80 transition-opacity border"
+          style={{ borderColor: '#C9A84C', color: '#C9A84C' }}
+        >
+          Learn
         </button>
       </div>
     </div>
