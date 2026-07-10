@@ -19,8 +19,10 @@ export default function Navbar() {
             <a href="/projects" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">Projects</a>
             <a href="/lsts" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">LSTs</a>
             <a href="/stablecoins" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">Stablecoins</a>
+            <a href="/rwas" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">RWAs</a>
             <a href="/news" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">News</a>
             <a href="/swap" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">Swap</a>
+            <a href="/learn" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">Learn</a>
             <a href="/about" className="text-sm text-gray-500 hover:text-yellow-400 transition-colors">About</a>
           </div>
 
@@ -45,8 +47,10 @@ export default function Navbar() {
             <a href="/projects" onClick={() => setMenuOpen(false)} className="text-sm text-gray-400 hover:text-yellow-400 transition-colors">Projects</a>
             <a href="/lsts" onClick={() => setMenuOpen(false)} className="text-sm text-gray-400 hover:text-yellow-400 transition-colors">LSTs</a>
             <a href="/stablecoins" onClick={() => setMenuOpen(false)} className="text-sm text-gray-400 hover:text-yellow-400 transition-colors">Stablecoins</a>
+            <a href="/rwas" onClick={() => setMenuOpen(false)} className="text-sm text-gray-400 hover:text-yellow-400 transition-colors">RWAs</a>
             <a href="/news" onClick={() => setMenuOpen(false)} className="text-sm text-gray-400 hover:text-yellow-400 transition-colors">News</a>
             <a href="/swap" onClick={() => setMenuOpen(false)} className="text-sm text-gray-400 hover:text-yellow-400 transition-colors">Swap</a>
+            <a href="/learn" onClick={() => setMenuOpen(false)} className="text-sm text-gray-400 hover:text-yellow-400 transition-colors">Learn</a>
             <a href="/about" onClick={() => setMenuOpen(false)} className="text-sm text-gray-400 hover:text-yellow-400 transition-colors">About</a>
             <a href="/swap" onClick={() => setMenuOpen(false)} className="text-sm px-4 py-2 rounded-lg text-center font-medium" style={{ backgroundColor: '#C9A84C', color: '#0a0a0f' }}>
               Launch Jupiter Swap
