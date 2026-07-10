@@ -5,13 +5,25 @@ import { useRouter } from 'next/navigation'
 const featured = [
   {
     tag: 'Deep Dive',
-    title: 'Jupiter ($JUP): A $150M Revenue Superapp Trading Like an Afterthought',
+    title: 'Circle ($CRCL): USDC Just Got a Federal Bank Charter',
+    link: '/news/crcl',
+    image: '/crcl-deepdive.jpg',
+  },
+  {
+    tag: 'Deep Dive',
+    title: "Robinhood Chain's First Week vs. Peak Solana",
+    link: '/news/robinhood-chain',
+    image: '/robinhood-chain-deepdive.jpg',
+  },
+  {
+    tag: 'Deep Dive',
+    title: 'Jupiter ($JUP): A $150M Revenue Superapp',
     link: '/news/jup',
     image: '/jup-deepdive.jpg',
   },
   {
     tag: 'Deep Dive',
-    title: 'Meteora ($MET): Strong Tech, Collapsed Volume, and a Lawsuit in the Room',
+    title: 'Meteora ($MET): Strong Tech, Collapsed Volume',
     link: '/news/met',
     image: '/met-deepdive.jpg',
   },
@@ -34,7 +46,7 @@ export default function FeaturedResearch() {
             Written in-house by SolanaFeed
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {featured.map((a) => (
             <div
               key={a.link}
@@ -47,8 +59,8 @@ export default function FeaturedResearch() {
                 alt={a.title}
                 className="w-full aspect-[1200/630] object-cover group-hover:opacity-90 transition-opacity"
               />
-              <div className="p-5 md:p-6">
-                <div className="flex items-center gap-2 mb-2">
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <span className="text-[10px] font-medium uppercase tracking-widest" style={{ color: '#C9A84C' }}>
                     {a.tag}
                   </span>
@@ -57,7 +69,7 @@ export default function FeaturedResearch() {
                     SolanaFeed Original
                   </span>
                 </div>
-                <div className="text-base md:text-lg text-gray-200 leading-snug group-hover:opacity-80 transition-opacity">
+                <div className="text-sm text-gray-200 leading-snug group-hover:opacity-80 transition-opacity">
                   {a.title}
                 </div>
               </div>
