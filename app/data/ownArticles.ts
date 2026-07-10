@@ -1,5 +1,21 @@
 export const ownArticles = [
   {
+  title: "Circle ($CRCL) Deep Dive: USDC Just Got a Federal Bank Charter. Here Is What That Changes.",
+  link: "/news/crcl",
+  date: "2026-07-10",
+  summary: "Circle just received final OCC approval to establish First National Digital Currency Bank, operating as Circle National Trust. The company behind Solana's dollar liquidity is now a federally chartered bank, with USDC reserve management designed in as a future capability. We break down what the charter changes, the Open USD threat, the August Coinbase renewal, and what Arc means for Solana.",
+  image: "/crcl-deepdive.jpg",
+  own: true,
+},
+{
+  title: "Robinhood Chain's Loud First Week, Measured Against Peak Solana",
+  link: "/news/robinhood-chain",
+  date: "2026-07-10",
+  summary: "17M transactions, 350K addresses, $250M TVL, and $1B in DEX volume in just over a week. Robinhood Chain's debut is one of the strongest chain launches of 2026. It's also 3% of Solana's best single day, powered by a memecoin frenzy the chain was positioned against, and running on a single sequencer. We put the numbers in perspective and break down the two threats Solana should actually take seriously.",
+  image: "/robinhood-chain-deepdive.jpg",
+  own: true,
+},
+  {
     title: "Jupiter ($JUP) Deep Dive: A $150M Revenue Superapp Trading Like an Afterthought",
     link: "/news/jup",
     date: "2026-07-06",
