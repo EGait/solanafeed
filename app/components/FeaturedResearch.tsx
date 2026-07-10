@@ -34,7 +34,7 @@ export default function FeaturedResearch() {
 
   return (
     <div className="px-6 py-12 border-b" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="flex items-center gap-3 mb-5">
           <div className="text-xs font-medium uppercase tracking-widest" style={{ color: '#C9A84C' }}>
             Featured Research
@@ -46,7 +46,7 @@ export default function FeaturedResearch() {
             Written in-house by SolanaFeed
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {featured.map((a) => (
             <div
               key={a.link}
