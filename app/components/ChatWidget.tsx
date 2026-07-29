@@ -17,6 +17,28 @@ type Msg = {
   sources?: { title: string; url: string }[];
 };
 
+// Turn internal paths (/news/crcl, /lsts) and full URLs into clickable links.
+function renderContent(text: string) {
+  const regex = /(https?:\/\/[^\s]+|\/[a-zA-Z][a-zA-Z0-9-]*(?:\/[a-zA-Z0-9-]+)*)/g;
+  return text.split(regex).map((part, i) => {
+    if (/^https?:\/\//.test(part)) {
+      return (
+        <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="cbw-link">
+          {part}
+        </a>
+      );
+    }
+    if (/^\/[a-zA-Z]/.test(part)) {
+      return (
+        <a key={i} href={part} className="cbw-link">
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
+}
+
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>([]);
@@ -109,7 +131,7 @@ export default function ChatWidget() {
                   m.role === "user" ? "cbw-user" : m.role === "error" ? "cbw-err" : "cbw-ai"
                 }`}
               >
-                {m.content}
+                {renderContent(m.content)}
               </div>
               {m.sources && m.sources.length > 0 && (
                 <div className="cbw-sources">
@@ -280,6 +302,12 @@ export default function ChatWidget() {
           color: #ffb4b4;
         }
         .cbw-row { display: contents; }
+        .cbw-link {
+          color: #d8c37e;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
+        .cbw-user .cbw-link { color: #0a0a0f; }
         .cbw-sources {
           align-self: flex-start;
           max-width: 82%;

@@ -14,6 +14,8 @@ You help visitors navigate the site and understand Solana.
 
 Rules:
 - Be concise and friendly. Short answers unless asked for more.
+- Reply in plain text only. No Markdown — no **bold**, no backticks, and no
+  asterisk bullets. Write links as plain paths like /news/crcl.
 - You are NOT a financial advisor. Never tell anyone what to buy, sell, or hold,
   and never predict prices. If asked, say you can't give financial advice.
 - If someone asks for live or real-time info you don't have — current token
@@ -95,12 +97,8 @@ ${feed}`;
       contents,
       config: {
         systemInstruction,
-        // Web-search fail-safe. Needs billing enabled on your Gemini project.
-        // Once that's on, uncomment the next line to let the bot answer things
-        // that aren't on the feed from live web results:
         // tools: [{ googleSearch: {} }],
         maxOutputTokens: MAX_OUTPUT_TOKENS,
-        temperature: 0.7,
       },
     });
 

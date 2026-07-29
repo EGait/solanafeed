@@ -2,11 +2,14 @@
 
 // components/HeroChat.tsx
 // A front-and-center "ask anything" bar for your homepage hero.
+// Drop <HeroChat /> into your hero (e.g. app/page.tsx). It calls the same
+// /api/chat route — feed-grounded, with web-search fail-safe.
 
 import { useEffect, useRef, useState } from "react";
 
 const API_URL = "/api/chat";
 
+// Starter prompts — tuned to what SolanaFeed actually covers.
 const SUGGESTIONS = [
   "What's trending on Solana today?",
   "Compare the top LSTs right now",
@@ -18,6 +21,28 @@ type Msg = {
   content: string;
   sources?: { title: string; url: string }[];
 };
+
+// Turn internal paths (/news/crcl, /lsts) and full URLs into clickable links.
+function renderContent(text: string) {
+  const regex = /(https?:\/\/[^\s]+|\/[a-zA-Z][a-zA-Z0-9-]*(?:\/[a-zA-Z0-9-]+)*)/g;
+  return text.split(regex).map((part, i) => {
+    if (/^https?:\/\//.test(part)) {
+      return (
+        <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="hc-link">
+          {part}
+        </a>
+      );
+    }
+    if (/^\/[a-zA-Z]/.test(part)) {
+      return (
+        <a key={i} href={part} className="hc-link">
+          {part}
+        </a>
+      );
+    }
+    return part;
+  });
+}
 
 export default function HeroChat({ compact = false }: { compact?: boolean }) {
   const [messages, setMessages] = useState<Msg[]>([]);
@@ -110,7 +135,7 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
         <div className="hc-thread">
           {messages.map((m, i) => (
             <div key={i} className={`hc-msg hc-${m.role}`}>
-              <div className="hc-bubble">{m.content}</div>
+              <div className="hc-bubble">{renderContent(m.content)}</div>
               {m.sources && m.sources.length > 0 && (
                 <div className="hc-sources">
                   <span className="hc-srclabel">From the web:</span>
@@ -244,6 +269,12 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
         }
         .hc-error .hc-bubble { background: #3a1a20; color: #ffb4b4; }
         .hc-dots { color: #8a8a95; }
+        .hc-link {
+          color: #d8c37e;
+          text-decoration: underline;
+          text-underline-offset: 2px;
+        }
+        .hc-user .hc-link { color: #0a0a0f; }
 
         .hc-sources { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
         .hc-srclabel { font-size: 11px; color: #6c6c72; }
