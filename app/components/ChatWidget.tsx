@@ -6,6 +6,7 @@
 // rest of your site — no Tailwind or global CSS required.
 
 import { useEffect, useRef, useState } from "react";
+import { CHAT_MODELS, DEFAULT_MODEL_KEY } from "../lib/models";
 
 const API_URL = "/api/chat";
 const GREETING =
@@ -15,6 +16,7 @@ type Msg = {
   role: "user" | "assistant" | "error";
   content: string;
   sources?: { title: string; url: string }[];
+  model?: string;
 };
 
 // Handles Markdown links [label](url), bare URLs, and internal paths like /lsts.
@@ -57,6 +59,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [model, setModel] = useState<string>(DEFAULT_MODEL_KEY);
   const logRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -90,6 +93,7 @@ export default function ChatWidget() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: history.map(({ role, content }) => ({ role, content })),
+          model,
         }),
       });
       const data = await res.json();
@@ -97,7 +101,7 @@ export default function ChatWidget() {
 
       setMessages((m) => [
         ...m,
-        { role: "assistant", content: data.reply, sources: data.sources },
+        { role: "assistant", content: data.reply, sources: data.sources, model: data.model },
       ]);
     } catch (err) {
       console.error(err);
@@ -161,6 +165,9 @@ export default function ChatWidget() {
                   ))}
                 </div>
               )}
+              {m.role === "assistant" && m.model && (
+                <div className="cbw-answeredby">answered by {m.model}</div>
+              )}
             </div>
           ))}
           {loading && (
@@ -168,6 +175,21 @@ export default function ChatWidget() {
               <span /><span /><span />
             </div>
           )}
+        </div>
+
+        <div className="cbw-modelbar">
+          <select
+            className="cbw-model"
+            value={model}
+            onChange={(e) => setModel(e.target.value)}
+            aria-label="Choose model"
+          >
+            {CHAT_MODELS.map((m) => (
+              <option key={m.key} value={m.key}>
+                {m.label}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="cbw-inputbar">
@@ -321,6 +343,12 @@ export default function ChatWidget() {
           text-underline-offset: 2px;
         }
         .cbw-user .cbw-link { color: #0a0a0f; }
+        .cbw-answeredby {
+          align-self: flex-start;
+          font-size: 10px;
+          color: #6c6c72;
+          margin-top: -4px;
+        }
         .cbw-sources {
           align-self: flex-start;
           max-width: 82%;
@@ -365,6 +393,26 @@ export default function ChatWidget() {
         @keyframes cbw-bounce {
           0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
           30% { transform: translateY(-5px); opacity: 1; }
+        }
+        .cbw-modelbar {
+          display: flex;
+          justify-content: flex-end;
+          padding: 8px 12px 0;
+        }
+        .cbw-model {
+          background: rgba(201, 168, 76, 0.08);
+          color: #d8c37e;
+          border: 1px solid rgba(201, 168, 76, 0.3);
+          border-radius: 8px;
+          padding: 4px 7px;
+          font-size: 11px;
+          font-family: inherit;
+          cursor: pointer;
+        }
+        .cbw-model:focus { outline: none; border-color: #c9a84c; }
+        .cbw-model option {
+          background: #17171f;
+          color: #e5e5ea;
         }
         .cbw-inputbar {
           display: flex;

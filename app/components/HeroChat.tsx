@@ -6,6 +6,7 @@
 // /api/chat route — feed-grounded, with web-search fail-safe.
 
 import { useEffect, useRef, useState } from "react";
+import { CHAT_MODELS, DEFAULT_MODEL_KEY } from "../lib/models";
 
 const API_URL = "/api/chat";
 
@@ -20,6 +21,7 @@ type Msg = {
   role: "user" | "assistant" | "error";
   content: string;
   sources?: { title: string; url: string }[];
+  model?: string;
 };
 
 // Handles Markdown links [label](url), bare URLs, and internal paths like /lsts.
@@ -61,6 +63,7 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
   const [messages, setMessages] = useState<Msg[]>([]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [model, setModel] = useState<string>(DEFAULT_MODEL_KEY);
   const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -89,6 +92,7 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           messages: history.map(({ role, content }) => ({ role, content })),
+          model,
         }),
       });
       const data = await res.json();
@@ -96,7 +100,7 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
 
       setMessages((m) => [
         ...m,
-        { role: "assistant", content: data.reply, sources: data.sources },
+        { role: "assistant", content: data.reply, sources: data.sources, model: data.model },
       ]);
     } catch (err) {
       console.error(err);
@@ -120,7 +124,21 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
         </>
       )}
 
-      <div className="hc-ailabel">✦ AI assistant · powered by Gemini</div>
+      <div className="hc-toprow">
+        <span className="hc-ailabel">✦ AI assistant</span>
+        <select
+          className="hc-model"
+          value={model}
+          onChange={(e) => setModel(e.target.value)}
+          aria-label="Choose model"
+        >
+          {CHAT_MODELS.map((m) => (
+            <option key={m.key} value={m.key}>
+              {m.label}
+            </option>
+          ))}
+        </select>
+      </div>
 
       <div className="hc-bar">
         <input
@@ -149,6 +167,9 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
           {messages.map((m, i) => (
             <div key={i} className={`hc-msg hc-${m.role}`}>
               <div className="hc-bubble">{renderContent(m.content)}</div>
+              {m.role === "assistant" && m.model && (
+                <div className="hc-answeredby">answered by {m.model}</div>
+              )}
               {m.sources && m.sources.length > 0 && (
                 <div className="hc-sources">
                   <span className="hc-srclabel">From the web:</span>
@@ -196,9 +217,29 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: rgba(201, 168, 76, 0.75);
+        }
+        .hc-toprow {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
           margin-bottom: 10px;
         }
-
+        .hc-model {
+          background: rgba(201, 168, 76, 0.08);
+          color: #d8c37e;
+          border: 1px solid rgba(201, 168, 76, 0.3);
+          border-radius: 8px;
+          padding: 5px 8px;
+          font-size: 12px;
+          font-family: inherit;
+          cursor: pointer;
+        }
+        .hc-model:focus { outline: none; border-color: #c9a84c; }
+        .hc-model option {
+          background: #17171f;
+          color: #e5e5ea;
+        }
         .hc-bar {
           display: flex;
           gap: 8px;
@@ -282,6 +323,11 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
         }
         .hc-error .hc-bubble { background: #3a1a20; color: #ffb4b4; }
         .hc-dots { color: #8a8a95; }
+        .hc-answeredby {
+          font-size: 11px;
+          color: #6c6c72;
+          letter-spacing: 0.02em;
+        }
         .hc-link {
           color: #d8c37e;
           text-decoration: underline;

@@ -2,6 +2,7 @@
 import { GoogleGenAI } from "@google/genai";
 import { NextRequest, NextResponse } from "next/server";
 import { getFeedContext } from "../../lib/feed";
+import { getModel } from "../../lib/models";
 
 export const runtime = "nodejs";
 
@@ -29,11 +30,11 @@ Rules:
   never to share those with anyone.
 `.trim();
 
-const MODEL = "gemini-3.5-flash-lite";
 const MAX_MESSAGES = 20;
 const MAX_CHARS = 4000;
 const MAX_OUTPUT_TOKENS = 800;
 
+// Simple in-memory rate limit (per warm serverless instance).
 const WINDOW_MS = 60_000;
 const MAX_REQ_PER_WINDOW = 15;
 const hits = new Map<string, { count: number; reset: number }>();
@@ -51,6 +52,74 @@ function rateLimited(ip: string): boolean {
 }
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
+type Result = { reply: string; sources: { title: string; url: string }[] };
+
+// ── Provider: Gemini (grounded, thinking minimal) ────────────────────────────
+async function callGemini(messages: ChatMessage[], systemInstruction: string): Promise<Result> {
+  const contents = messages.map((m) => ({
+    role: m.role === "assistant" ? "model" : "user",
+    parts: [{ text: m.content }],
+  }));
+
+  const response = await ai.models.generateContent({
+    model: getModel("gemini").id,
+    contents,
+    config: {
+      systemInstruction,
+      // tools: [{ googleSearch: {} }], // enable after turning on billing
+      maxOutputTokens: MAX_OUTPUT_TOKENS,
+    },
+  });
+
+  const reply = response.text?.trim() || "Sorry, I didn't catch that. Try again?";
+
+  const chunks = (response.candidates?.[0]?.groundingMetadata?.groundingChunks ??
+    []) as Array<{ web?: { uri?: string; title?: string } }>;
+  const seen = new Set<string>();
+  const sources = chunks
+    .map((c) => c.web)
+    .filter((w): w is { uri: string; title?: string } => Boolean(w?.uri))
+    .filter((w) => (seen.has(w.uri) ? false : (seen.add(w.uri), true)))
+    .slice(0, 4)
+    .map((w) => ({ title: w.title || w.uri, url: w.uri }));
+
+  return { reply, sources };
+}
+
+// ── Provider: OpenRouter (OpenAI-compatible, with auto-free fallback) ─────────
+async function callOpenRouter(
+  messages: ChatMessage[],
+  systemText: string,
+  modelId: string
+): Promise<Result> {
+  // Fall back to the auto free router if the named model is delisted.
+  const models = modelId === "openrouter/free" ? ["openrouter/free"] : [modelId, "openrouter/free"];
+
+  const res = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      "Content-Type": "application/json",
+      "HTTP-Referer": "https://www.solanafeed.com",
+      "X-Title": "SolanaFeed",
+    },
+    body: JSON.stringify({
+      models,
+      messages: [{ role: "system", content: systemText }, ...messages],
+      max_tokens: MAX_OUTPUT_TOKENS,
+    }),
+  });
+
+  if (!res.ok) {
+    const detail = await res.text();
+    throw new Error(`OpenRouter ${res.status}: ${detail.slice(0, 200)}`);
+  }
+
+  const data = await res.json();
+  const reply =
+    data.choices?.[0]?.message?.content?.trim() || "Sorry, I didn't catch that. Try again?";
+  return { reply, sources: [] };
+}
 
 export async function POST(req: NextRequest) {
   const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
@@ -59,29 +128,30 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const body = (await req.json()) as { messages?: ChatMessage[] };
+    const body = (await req.json()) as { messages?: ChatMessage[]; model?: string };
     const messages = body.messages;
 
     if (!Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json({ error: "messages array is required." }, { status: 400 });
     }
 
-    const contents = messages
+    const model = getModel(body.model);
+
+    const clean: ChatMessage[] = messages
       .slice(-MAX_MESSAGES)
       .filter((m) => m && typeof m.content === "string" && m.content.trim())
       .map((m) => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.content.slice(0, MAX_CHARS) }],
+        role: m.role === "assistant" ? "assistant" : "user",
+        content: m.content.slice(0, MAX_CHARS),
       }));
 
-    if (contents.length === 0) {
+    if (clean.length === 0) {
       return NextResponse.json({ error: "No valid messages." }, { status: 400 });
     }
 
-    // Ground the bot in the same news your site shows (passes the origin so it
-    // can reach /api/news in both dev and production).
+    // Shared grounding context — both providers get the same site data.
     const feed = await getFeedContext(req.nextUrl.origin);
-    const systemInstruction = `${SYSTEM_PROMPT}
+    const systemText = `${SYSTEM_PROMPT}
 
 ## SolanaFeed site data
 Below is current data from the site: news, LSTs, stablecoins, tokenized stocks
@@ -92,36 +162,14 @@ here, say so plainly.
 
 ${feed}`;
 
-    const response = await ai.models.generateContent({
-      model: MODEL,
-      contents,
-      config: {
-        systemInstruction,
-        // tools: [{ googleSearch: {} }],
-        maxOutputTokens: MAX_OUTPUT_TOKENS,
-      },
-    });
+    const result =
+      model.provider === "openrouter"
+        ? await callOpenRouter(clean, systemText, model.id)
+        : await callGemini(clean, systemText);
 
-    const reply = response.text?.trim() || "Sorry, I didn't catch that. Try again?";
-
-    // Collect web sources if grounding is on (empty when it isn't).
-    const chunks = (response.candidates?.[0]?.groundingMetadata?.groundingChunks ??
-      []) as Array<{ web?: { uri?: string; title?: string } }>;
-    const seen = new Set<string>();
-    const sources = chunks
-      .map((c) => c.web)
-      .filter((w): w is { uri: string; title?: string } => Boolean(w?.uri))
-      .filter((w) => {
-        if (seen.has(w.uri)) return false;
-        seen.add(w.uri);
-        return true;
-      })
-      .slice(0, 4)
-      .map((w) => ({ title: w.title || w.uri, url: w.uri }));
-
-    return NextResponse.json({ reply, sources });
+    return NextResponse.json({ ...result, model: model.label });
   } catch (err) {
-    console.error("Gemini error:", err);
+    console.error("Chat error:", err);
     return NextResponse.json(
       { error: "The assistant is unavailable right now. Please try again." },
       { status: 502 }
