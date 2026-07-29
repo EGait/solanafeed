@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@google/genai": "^2.13.0",
     "@jup-ag/api": "^6.0.48",
     "@solana-mobile/wallet-adapter-mobile": "^2.2.8",
     "@solana-mobile/wallet-standard-mobile": "^0.5.2",

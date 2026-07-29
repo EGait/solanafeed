@@ -3,6 +3,7 @@ import Script from 'next/script'
 import './globals.css'
 import WalletProviderWrapper from './components/WalletProviderWrapper'
 import ServiceWorker from './components/ServiceWorker'
+import ChatWidget from './components/ChatWidget'
 
 export const metadata: Metadata = {
   title: 'SolanaFeed — Your Daily Hub for Solana News, Projects and Swaps',
@@ -92,6 +93,7 @@ export default function RootLayout({
         <WalletProviderWrapper>
           {children}
         </WalletProviderWrapper>
+        <ChatWidget />
       </body>
     </html>
   )

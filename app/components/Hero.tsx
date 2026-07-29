@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import HeroChat from './HeroChat'
 
 export default function Hero() {
   const router = useRouter()
@@ -74,6 +75,11 @@ export default function Hero() {
         >
           Learn
         </button>
+      </div>
+
+      {/* Ask bar — compact mode, sits right under the buttons */}
+      <div className="mt-8">
+        <HeroChat compact />
       </div>
     </div>
   )
