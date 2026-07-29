@@ -17,26 +17,39 @@ type Msg = {
   sources?: { title: string; url: string }[];
 };
 
-// Turn internal paths (/news/crcl, /lsts) and full URLs into clickable links.
+// Handles Markdown links [label](url), bare URLs, and internal paths like /lsts.
+// All links open in a new tab so the conversation stays put.
 function renderContent(text: string) {
-  const regex = /(https?:\/\/[^\s]+|\/[a-zA-Z][a-zA-Z0-9-]*(?:\/[a-zA-Z0-9-]+)*)/g;
-  return text.split(regex).map((part, i) => {
-    if (/^https?:\/\//.test(part)) {
-      return (
-        <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="cbw-link">
-          {part}
-        </a>
-      );
-    }
-    if (/^\/[a-zA-Z]/.test(part)) {
-      return (
-        <a key={i} href={part} className="cbw-link">
-          {part}
-        </a>
-      );
-    }
-    return part;
-  });
+  const regex =
+    /(\[[^\]]+\]\([^)]+\))|(https?:\/\/[^\s)]+)|(\/[a-zA-Z][a-zA-Z0-9-]*(?:\/[a-zA-Z0-9-]+)*)/g;
+  return text
+    .split(regex)
+    .filter(Boolean)
+    .map((part, i) => {
+      const md = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+      if (md) {
+        return (
+          <a key={i} href={md[2]} target="_blank" rel="noopener noreferrer" className="cbw-link">
+            {md[1]}
+          </a>
+        );
+      }
+      if (/^https?:\/\//.test(part)) {
+        return (
+          <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="cbw-link">
+            {part}
+          </a>
+        );
+      }
+      if (/^\/[a-zA-Z]/.test(part)) {
+        return (
+          <a key={i} href={part} target="_blank" rel="noopener noreferrer" className="cbw-link">
+            {part}
+          </a>
+        );
+      }
+      return part;
+    });
 }
 
 export default function ChatWidget() {
