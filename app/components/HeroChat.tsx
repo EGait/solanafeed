@@ -64,7 +64,12 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [model, setModel] = useState<string>(DEFAULT_MODEL_KEY);
+  const [mounted, setMounted] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
+
+  // Skip server rendering so the scoped styles are always in place before the
+  // component paints (prevents a flash of unstyled content on first load).
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     // Only nudge into view when the user just sent a message, and keep it within
@@ -112,6 +117,8 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
       setLoading(false);
     }
   }
+
+  if (!mounted) return null;
 
   return (
     <section className="hc-wrap">
@@ -240,6 +247,7 @@ export default function HeroChat({ compact = false }: { compact?: boolean }) {
           background: #17171f;
           color: #e5e5ea;
         }
+
         .hc-bar {
           display: flex;
           gap: 8px;
