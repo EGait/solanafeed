@@ -4,7 +4,7 @@
 
 🌐 **Live at [solanafeed.com](https://solanafeed.com)**
 
-<img width="1886" height="841" alt="image" src="https://github.com/user-attachments/assets/4506b792-8034-453b-964c-3ca291bf579b" />
+<img width="1882" height="887" alt="HomePage Screenshot" src="https://github.com/user-attachments/assets/47f9884a-765a-4e0a-a2c0-6d526fe71080" />
 
 
 ---
