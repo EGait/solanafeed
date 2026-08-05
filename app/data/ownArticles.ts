@@ -1,5 +1,13 @@
 export const ownArticles = [
   {
+  title: "Solana's Two New Proposals Could Take Daily SOL Burns From $47K to $650K",
+  link: "/news/solana-supply-proposals",
+  date: "2026-08-04",
+  summary: "Two linked governance proposals, SIMD-0550 and SIMD-0553, would speed up Solana's disinflation schedule and introduce resource-based fees that burn far more SOL per day. We break down the mechanics, why burns still can't outpace issuance even after a 10x jump, who's actually driving support, and what happens if the August 18 signaling deadline is missed.",
+  image: "/solana-proposals-deepdive.jpg",
+  own: true,
+},
+  {
   title: "Circle ($CRCL) Deep Dive: USDC Just Got a Federal Bank Charter. Here Is What That Changes.",
   link: "/news/crcl",
   date: "2026-07-10",
