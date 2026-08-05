@@ -3,6 +3,12 @@
 import { useRouter } from 'next/navigation'
 
 const featured = [
+    {
+    tag: 'Deep Dive',
+    title: "Solana's Supply Squeeze: SIMD-0550 & SIMD-0553",
+    link: '/news/solana-supply-proposals',
+    image: '/solana-proposals-deepdive.jpg',
+  },
   {
     tag: 'Deep Dive',
     title: 'Circle ($CRCL): USDC Just Got a Federal Bank Charter',
@@ -20,12 +26,6 @@ const featured = [
     title: 'Jupiter ($JUP): A $150M Revenue Superapp',
     link: '/news/jup',
     image: '/jup-deepdive.jpg',
-  },
-  {
-    tag: 'Deep Dive',
-    title: 'Meteora ($MET): Strong Tech, Collapsed Volume',
-    link: '/news/met',
-    image: '/met-deepdive.jpg',
   },
 ]
 
