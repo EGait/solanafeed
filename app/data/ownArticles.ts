@@ -40,22 +40,6 @@ export const ownArticles = [
     own: true,
   },
   {
-    title: "Magic Eden's $ME Lawsuit: Broken Promises or Bad Timing?",
-    link: "/news/magic-eden-me-lawsuit",
-    date: "2026-07-01",
-    summary: "Magic Eden is facing a federal class action over its $ME token, with plaintiffs alleging the company's marketing promised features, governance, and rewards that arrived late, fell short, or never launched. The suit skips securities claims entirely and leans on New York consumer protection law instead. We break down what's actually being alleged, and why the case could matter far beyond Magic Eden.",
-    image: "/magic-eden-lawsuit.jpg",
-    own: true,
-  },
-  {
-    title: "The Liminals: How One Trader Turned His Biggest Loss Into His Greatest Build",
-    link: "/news/behind-the-traders-fresh2010",
-    date: "2026-04-29",
-    summary: "For DegenNFT_G, the journey through Web3 wasn't just about flipping assets or climbing leaderboards. After finishing in the top 1% on Magic Eden two seasons running, a single bad trade wiped everything out. What happened next — a conversation with his son — changed his entire approach to crypto. Out of that experience came The Liminals, a 3,333 NFT collection built on discipline, community, and the idea that growth happens in the space between extremes.",
-    image: "/limfull.jpg",
-    own: true,
-  },
-  {
     title: "Welcome to SolanaFeed — Your Solana Hub",
     link: "/news/welcome-to-solanafeed",
     date: "2026-04-06",
