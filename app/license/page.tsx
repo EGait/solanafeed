@@ -37,7 +37,7 @@ export default function LicensePage() {
           </div>
           <div>
             <h2 className="text-base font-medium text-gray-200 mb-3">Third Party Content</h2>
-            <p>SolanaFeed aggregates news content from third party sources including Cointelegraph via RSS feeds. This content remains the intellectual property of the original publishers. Project information and descriptions are created by SolanaFeed and are our original work.</p>
+            <p>SolanaFeed aggregates news content from third party sources including Coinpedia via RSS feeds. This content remains the intellectual property of the original publishers. Project information and descriptions are created by SolanaFeed and are our original work.</p>
           </div>
           <div>
             <h2 className="text-base font-medium text-gray-200 mb-3">Disclaimer</h2>

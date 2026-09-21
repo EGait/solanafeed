@@ -29,7 +29,7 @@ export default function CopyrightPage() {
           </div>
           <div>
             <h2 className="text-base font-medium text-gray-200 mb-3">Third Party Content</h2>
-            <p>News articles aggregated from Cointelegraph and other sources via RSS remain the copyright of their respective publishers. Project logos and trademarks displayed on SolanaFeed are the property of their respective owners and are used for informational purposes only.</p>
+            <p>News articles aggregated from Coinpedia and other sources via RSS remain the copyright of their respective publishers. Project logos and trademarks displayed on SolanaFeed are the property of their respective owners and are used for informational purposes only.</p>
           </div>
           <div>
             <h2 className="text-base font-medium text-gray-200 mb-3">Fair Use</h2>

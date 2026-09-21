@@ -97,7 +97,7 @@ async function newsSection(baseUrl: string): Promise<string> {
 
   const combined = [...(ownArticles as any[]), ...fetched].slice(0, NEWS_ITEMS);
   const lines = combined.map((a, i) => {
-    const src = a.own ? "SolanaFeed" : "Cointelegraph";
+    const src = a.own ? "SolanaFeed" : "Coinpedia";
     const day = fmtDate(a.date);
     const meta = day ? ` — ${src} (${day})` : ` — ${src}`;
     const sum = a.summary ? `\n   ${trim(a.summary, 140)}` : "";

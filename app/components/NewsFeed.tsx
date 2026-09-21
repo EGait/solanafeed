@@ -310,7 +310,7 @@ export default function NewsFeed() {
                   <div className="sf-hero-body">
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 13 }}>
                       <span className={`sf-badge ${hero.own ? 'own' : 'ct'}`}>
-                        {hero.own ? 'SolanaFeed' : 'Cointelegraph'}
+                        {hero.own ? 'SolanaFeed' : 'Coinpedia'}
                       </span>
                       <span style={{ fontSize: 11, color: 'rgba(255,255,255,.25)', fontWeight: 300 }}>
                         {timeAgo(hero.date)}
@@ -352,7 +352,7 @@ export default function NewsFeed() {
                       <div className="sf-card-body">
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 9 }}>
                           <span className={`sf-badge ${article.own ? 'own' : 'ct'}`}>
-                            {article.own ? 'SolanaFeed' : 'Cointelegraph'}
+                            {article.own ? 'SolanaFeed' : 'Coinpedia'}
                           </span>
                           <span style={{ fontSize: 10, color: 'rgba(255,255,255,.2)', fontWeight: 300 }}>
                             {timeAgo(article.date)}
@@ -393,7 +393,7 @@ export default function NewsFeed() {
                   <div>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 6 }}>
                       <span className={`sf-badge ${article.own ? 'own' : 'ct'}`}>
-                        {article.own ? 'SolanaFeed' : 'Cointelegraph'}
+                        {article.own ? 'SolanaFeed' : 'Coinpedia'}
                       </span>
                       <span style={{ fontSize: 10, color: 'rgba(255,255,255,.18)', fontWeight: 300 }}>
                         {timeAgo(article.date)}

@@ -43,7 +43,7 @@ export default function PrivacyPage() {
             <h2 className="text-base font-medium text-gray-200 mb-3">5. Third Party Services</h2>
             <ul className="flex flex-col gap-2 text-gray-500">
               <li>— <strong className="text-gray-400">Jupiter</strong> — powers token swaps. Subject to Jupiter's own privacy policy.</li>
-              <li>— <strong className="text-gray-400">Cointelegraph</strong> — news content sourced via RSS feed.</li>
+              <li>— <strong className="text-gray-400">Coinpedia</strong> — news content sourced via RSS feed.</li>
               <li>— <strong className="text-gray-400">Vercel</strong> — our hosting provider. May collect standard web server logs.</li>
             </ul>
           </div>
