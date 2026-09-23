@@ -12,6 +12,7 @@ import { stablecoins } from "../data/stablecoins";
 import { projects } from "../data/projects";
 import { tokenizedStocks } from "../data/rwas";
 import { guides } from "../data/guides";
+import { fetchTopVolumePools } from "./geckoterminal";
 // ──────────────────────────────────────────────────────────────────────────────
 
 const NEWS_ITEMS = 15;
@@ -76,6 +77,33 @@ const STATIC_SECTIONS = [LST_SECTION, STABLE_SECTION, RWA_SECTION, PROJECT_SECTI
   .filter(Boolean)
   .join("\n");
 
+// ── Live token volume section (fetched fresh each cache cycle via GeckoTerminal) ─
+async function tokenVolumeSection(): Promise<string> {
+  let pools: Awaited<ReturnType<typeof fetchTopVolumePools>> = [];
+  try {
+    const controller = new AbortController();
+    const t = setTimeout(() => controller.abort(), 4000); // give up after 4s
+    pools = await fetchTopVolumePools(10);
+    clearTimeout(t);
+  } catch {
+    // GeckoTerminal unreachable or slow — omit this section rather than block the reply
+    return "";
+  }
+
+  if (pools.length === 0) return "";
+
+  const lines = pools.map((p, i) => {
+    const chg = p.priceChange.h24 >= 0 ? `+${p.priceChange.h24.toFixed(1)}%` : `${p.priceChange.h24.toFixed(1)}%`;
+    return `${i + 1}. ${p.baseSymbol}/${p.quoteSymbol} on ${p.dex} — 24h vol $${(p.volume.h24 / 1000).toFixed(0)}K, 24h change ${chg}, liquidity $${(p.liquidityUsd / 1000).toFixed(0)}K`;
+  });
+
+  return section(
+    "Live Top Solana Tokens by 24h Volume (via GeckoTerminal, updates every few minutes)",
+    lines,
+    "(Full live table with 1H/6H/24H toggle at the top of the homepage)"
+  );
+}
+
 // ── News section (live — fetched from /api/news, merged with your own) ────────
 async function newsSection(baseUrl: string): Promise<string> {
   let fetched: any[] = [];
@@ -111,8 +139,11 @@ async function newsSection(baseUrl: string): Promise<string> {
 export async function getFeedContext(baseUrl: string): Promise<string> {
   if (cache && Date.now() - cache.at < CACHE_MS) return cache.text;
 
-  const news = await newsSection(baseUrl);
-  const text = [news, STATIC_SECTIONS].filter(Boolean).join("\n");
+  const [news, liveVolume] = await Promise.all([
+    newsSection(baseUrl),
+    tokenVolumeSection(),
+  ]);
+  const text = [news, liveVolume, STATIC_SECTIONS].filter(Boolean).join("\n");
 
   cache = { at: Date.now(), text };
   return text;
