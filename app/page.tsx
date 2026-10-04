@@ -11,8 +11,8 @@ export default function Home() {
     <main className="bg-[#0a0a0f] min-h-screen text-gray-100">
       <Navbar />
       <Hero />
-      <TopTokensTable />
       <FeaturedResearch />
+      <TopTokensTable />
       <ProjectList />
       <NewsFeed />
       <Footer />
