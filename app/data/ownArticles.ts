@@ -1,5 +1,13 @@
 export const ownArticles = [
   {
+  title: "Solana vs. Every Major Chain: Stablecoins, Volume, and Users",
+  link: "/news/solana-vs-other-chains",
+  date: "2026-10-07",
+  summary: "Solana is #1 in 30-day DEX volume ($77B, about 1.9x Ethereum) and #1 in weekly active addresses, but only #3 in stablecoin supply at $16.6B. We compare ten major chains on stablecoins, volume, and users, show how many dollars of trading each chain gets from every $1 of stablecoins, and explain why address counts need careful reading.",
+  image: "/solana-vs-chains-deepdive.jpg",
+  own: true,
+},
+  {
   title: "Solana's Two New Proposals Could Take Daily SOL Burns From $47K to $650K",
   link: "/news/solana-supply-proposals",
   date: "2026-08-04",

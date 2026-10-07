@@ -3,6 +3,12 @@
 import { useRouter } from 'next/navigation'
 
 const featured = [
+  {
+    tag: 'Data',
+    title: 'Solana vs. Every Major Chain: Stablecoins, Volume, Users',
+    link: '/news/solana-vs-other-chains',
+    image: '/solana-vs-chains-deepdive.jpg',
+  },
     {
     tag: 'Deep Dive',
     title: "Solana's Supply Squeeze: SIMD-0550 & SIMD-0553",
@@ -20,12 +26,6 @@ const featured = [
     title: "Robinhood Chain's First Week vs. Peak Solana",
     link: '/news/robinhood-chain',
     image: '/robinhood-chain-deepdive.jpg',
-  },
-  {
-    tag: 'Deep Dive',
-    title: 'Jupiter ($JUP): A $150M Revenue Superapp',
-    link: '/news/jup',
-    image: '/jup-deepdive.jpg',
   },
 ]
 
