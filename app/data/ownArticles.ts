@@ -1,5 +1,13 @@
 export const ownArticles = [
   {
+  title: "Alpenglow Is Live: What Solana's Biggest Upgrade Changed, and What It Did Not",
+  link: "/news/alpenglow",
+  date: "2026-10-23",
+  summary: "Solana activated Alpenglow on October 21, cutting the finality target from about 12.8 seconds to 150 milliseconds. We break down what went live, why TPS charts look odd, what is still coming, and which claims still need proof.",
+  image: "/alpenglow-deepdive.jpg",
+  own: true,
+},
+  {
   title: "Solana vs. Every Major Chain: Stablecoins, Volume, and Users",
   link: "/news/solana-vs-other-chains",
   date: "2026-10-07",
