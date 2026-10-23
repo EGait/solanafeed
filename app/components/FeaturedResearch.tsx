@@ -1,36 +1,16 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { ownArticles } from '../data/ownArticles'
 
-const featured = [
-  {
-    tag: 'Data',
-    title: 'Solana vs. Every Major Chain: Stablecoins, Volume, Users',
-    link: '/news/solana-vs-other-chains',
-    image: '/solana-vs-chains-deepdive.jpg',
-  },
-    {
-    tag: 'Deep Dive',
-    title: "Solana's Supply Squeeze: SIMD-0550 & SIMD-0553",
-    link: '/news/solana-supply-proposals',
-    image: '/solana-proposals-deepdive.jpg',
-  },
-  {
-    tag: 'Deep Dive',
-    title: 'Circle ($CRCL): USDC Just Got a Federal Bank Charter',
-    link: '/news/crcl',
-    image: '/crcl-deepdive.jpg',
-  },
-  {
-    tag: 'Deep Dive',
-    title: "Robinhood Chain's First Week vs. Peak Solana",
-    link: '/news/robinhood-chain',
-    image: '/robinhood-chain-deepdive.jpg',
-  },
-]
+const MAX_CARDS = 8
 
 export default function FeaturedResearch() {
   const router = useRouter()
+
+  const featured = [...ownArticles]
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+    .slice(0, MAX_CARDS)
 
   return (
     <div className="px-6 py-12 border-b" style={{ borderColor: 'rgba(201,168,76,0.2)' }}>
@@ -46,6 +26,7 @@ export default function FeaturedResearch() {
             Written in-house by SolanaFeed
           </div>
         </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {featured.map((a) => (
             <div
@@ -62,14 +43,22 @@ export default function FeaturedResearch() {
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <span className="text-[10px] font-medium uppercase tracking-widest" style={{ color: '#C9A84C' }}>
-                    {a.tag}
+                    Research
                   </span>
                   <span className="text-[10px] text-gray-600">·</span>
                   <span className="text-[10px] text-gray-500 uppercase tracking-widest">
                     SolanaFeed Original
                   </span>
                 </div>
-                <div className="text-sm text-gray-200 leading-snug group-hover:opacity-80 transition-opacity">
+                <div
+                  className="text-sm text-gray-200 leading-snug group-hover:opacity-80 transition-opacity"
+                  style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden',
+                  }}
+                >
                   {a.title}
                 </div>
               </div>
